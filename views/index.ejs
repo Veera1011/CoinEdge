@@ -1,0 +1,152 @@
+<%- include('layout', { body: `
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-row">
+            <div class="hero-left">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        CoinEdge
+                    </h1>
+                    <p class="hero-description">
+                        CoinEdge is a fixed-odds trade on the blockchain, where your win or loss depends on whether the mid-price of the digital currency at the expiration time is higher or lower than the transaction price at the time of purchase.
+                    </p>
+                    <a href="/auth/login" class="btn btn-warning">
+                        <i class="fas fa-play"></i>
+                        Start Trading
+                    </a>
+                </div>
+            </div>
+            <div class="hero-slider">
+                    <div class="slider-container">
+                        <div class="slider-wrapper">
+                            <div class="slider-images">
+                                <img src="/assets/slider/1.png" alt="CoinEdge Slide 1" class="slider-image active">
+                                <img src="/assets/slider/2.png" alt="CoinEdge Slide 2" class="slider-image">
+                                <img src="/assets/slider/3.png" alt="CoinEdge Slide 3" class="slider-image">
+                                <img src="/assets/slider/4.png" alt="CoinEdge Slide 4" class="slider-image">
+                                <img src="/assets/slider/5.png" alt="CoinEdge Slide 5" class="slider-image">
+                                <img src="/assets/slider/6.png" alt="CoinEdge Slide 6" class="slider-image">
+                                <img src="/assets/slider/7.png" alt="CoinEdge Slide 7" class="slider-image">
+                                <img src="/assets/slider/8.png" alt="CoinEdge Slide 8" class="slider-image">
+                                <img src="/assets/slider/9.png" alt="CoinEdge Slide 9" class="slider-image">
+                                <img src="/assets/slider/10.png" alt="CoinEdge Slide 10" class="slider-image">
+                            </div>
+                            <button class="slider-btn slider-prev" onclick="changeSlide(-1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slider-btn slider-next" onclick="changeSlide(1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(1)"></span>
+                                <span class="dot" onclick="currentSlide(2)"></span>
+                                <span class="dot" onclick="currentSlide(3)"></span>
+                                <span class="dot" onclick="currentSlide(4)"></span>
+                                <span class="dot" onclick="currentSlide(5)"></span>
+                                <span class="dot" onclick="currentSlide(6)"></span>
+                                <span class="dot" onclick="currentSlide(7)"></span>
+                                <span class="dot" onclick="currentSlide(8)"></span>
+                                <span class="dot" onclick="currentSlide(9)"></span>
+                                <span class="dot" onclick="currentSlide(10)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="features-header">
+            <h2 class="features-title">Why Choose CoinEdge?</h2>
+            <p class="features-subtitle">Experience the future of blockchain trading</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/assets/icons/shield.gif" alt="Security" class="feature-gif">
+                    </div>
+                    <h4 class="feature-title">Secure</h4>
+                    <p class="feature-description">Blockchain-powered security ensures your trades are safe with CoinEdge.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/assets/icons/money-bag.gif" alt="Profitable" class="feature-gif">
+                    </div>
+                    <h4 class="feature-title">Profitable</h4>
+                    <p class="feature-description">Fixed-odds trading with predictable outcomes and maximum profit potential.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/assets/icons/tech-support.gif" alt="Support" class="feature-gif">
+                    </div>
+                    <h4 class="feature-title">24/7 Support</h4>
+                    <p class="feature-description">Round-the-clock technical support and customer service for all your needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Innovation Section -->
+<section class="innovation-section">
+    <div class="container">
+        <div class="innovation-row">
+            <div class="innovation-left">
+                <div class="innovation-content">
+                    <h2 class="innovation-title">
+                        <img src="/assets/icons/idea.gif" alt="Innovation" class="idea-gif">
+                        Innovation at Its Core
+                    </h2>
+                    <p class="innovation-description">
+                        CoinEdge leverages cutting-edge blockchain technology to provide you with the most advanced trading platform. Our innovative approach ensures you stay ahead in the crypto market.
+                    </p>
+                    <div class="innovation-features">
+                        <div class="innovation-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Advanced AI-powered predictions</span>
+                        </div>
+                        <div class="innovation-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Real-time market analysis</span>
+                        </div>
+                        <div class="innovation-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Automated risk management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="innovation-right">
+                <div class="innovation-visual">
+                    <div class="innovation-card">
+                        <h4 class="market-title">Live Market Data</h4>
+                        <div class="market-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">BTC/USD</span>
+                                <span class="stat-value stat-positive">+2.5%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">ETH/USD</span>
+                                <span class="stat-value stat-negative">-1.2%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total Volume</span>
+                                <span class="stat-value stat-primary">$2.4B</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+` }) %>

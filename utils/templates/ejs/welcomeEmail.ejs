@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Successful</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #e6f3ff; margin: 0; padding: 0;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center" style="padding: 40px 0;">
+        <table width="600" cellpadding="20" cellspacing="0" 
+               style="background-color: #ffffff; border-radius: 12px; 
+                      box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          
+          <!-- Header -->
+          <tr>
+            <td align="center" 
+                style="background-color: #4da6ff; 
+                       color: #ffffff; 
+                       border-radius: 12px 12px 0 0; 
+                       padding: 30px;">
+              <h1 style="margin: 0; font-size: 26px; font-weight: bold;">Registration Successful 🎉</h1>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="color: #333333; font-size: 16px; line-height: 1.6;">
+              <p>Hi <strong><%= username %></strong>,</p>
+              <p>Thank you for registering with <strong>CoinEdge</strong>!  
+              Your account has been created successfully, and you're all set to get started.</p>
+
+              <p><strong>Your details:</strong></p>
+              <table width="100%" cellpadding="8" cellspacing="0" 
+                     style="background-color: #f2f9ff; border-radius: 8px; margin-bottom: 20px;">
+                <tr>
+                  <td><strong>Email:</strong></td>
+                  <td><%= email %></td>
+                </tr>
+                <tr>
+                  <td><strong>Username:</strong></td>
+                  <td><%= username %></td>
+                </tr>
+              </table>
+
+              <p style="text-align: center; margin: 25px 0;">
+                <span style="display: inline-block; 
+                             background-color: #4da6ff; 
+                             color: #ffffff; 
+                             padding: 12px 28px; 
+                             border-radius: 6px; 
+                             font-weight: bold; 
+                             font-size: 15px;">
+                  Log In
+                </span>
+              </p>
+
+              <p>Welcome to the family! We're excited to have you with us. 💙</p>
+              <p>Best regards,<br><strong>CoinEdge</strong> Team</p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" 
+                style="font-size: 12px; color: #777777; 
+                       border-top: 1px solid #e0e0e0; padding-top: 12px;">
+              © 2024 CoinEdge. All rights reserved.
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

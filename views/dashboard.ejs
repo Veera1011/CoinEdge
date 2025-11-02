@@ -1,0 +1,123 @@
+<%- include('layout', { body: ` <div class="dashboard-container">
+    <!-- Section 1: Today Report Card -->
+    <div class="today-report-section">
+        <div class="today-report-card">
+            <div class="report-header">
+                <h4 class="report-title">Today Report</h4>
+                <span class="report-date" id="todayDate"></span>
+            </div>
+            <div class="report-content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="sub-card">
+                            <div class="sub-card-header">
+                                <h6>Account Balance</h6>
+                            </div>
+                            <div class="sub-card-value">$0</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="sub-card">
+                            <div class="sub-card-header">
+                                <h6>Today's PNL</h6>
+                            </div>
+                            <div class="sub-card-value positive">$0</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="sub-card">
+                            <div class="sub-card-header">
+                                <h6>Today's Gain</h6>
+                            </div>
+                            <div class="sub-card-value positive">$0</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="sub-card">
+                            <div class="sub-card-header">
+                                <h6>Balance Report</h6>
+                            </div>
+                            <div class="sub-card-value">$0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Action Buttons -->
+    <div class="action-section">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="action-btn transfer" onclick="navigateTo('/user/transfer')">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Transfer</span>
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button class="action-btn deposit" onclick="navigateTo('/user/deposit')">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Deposit</span>
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button class="action-btn withdraw" onclick="navigateTo('/user/withdraw')">
+                    <i class="fas fa-minus-circle"></i>
+                    <span>Withdraw</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Trading Table -->
+    <div class="trading-section">
+        <div class="table-container">
+            <h4 class="table-heading">Top Trades</h4>
+            <table class="trading-table">
+                <thead>
+                    <tr>
+                        <th>Coin</th>
+                        <th>Coin / Symbol</th>
+                        <th>Current Price (USD)</th>
+                        <th>7-Day Trend</th>
+                        <th>Market Cap (USD)</th>
+                        <th>24h Change (%)</th>
+                        <th>7-Day Change (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="crypto-table-body">
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 20px;">
+                            <div id="crypto-loading-placeholder" style="display: none;">
+                                <!-- This will be controlled by JavaScript -->
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    ` }) %>
+
+
+    <script>
+        // Get today's date
+        const today = new Date();
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        const formattedDate = today.toLocaleDateString('en-US', options);
+
+        // Update the span by ID
+        const dateSpan = document.getElementById('todayDate');
+        if (dateSpan) {
+            dateSpan.textContent = formattedDate;
+        }
+
+
+        // Navigation function
+        function navigateTo(path) {
+            window.location.href = path;
+        }
+
+
+    </script>

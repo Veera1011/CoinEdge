@@ -1,0 +1,141 @@
+/* Simple Responsive Popup Styles with Font Awesome */
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(3px);
+}
+
+.popup {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: popupSlideIn 0.3s ease-out;
+}
+
+.popup-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.popup-icon.success {
+    color: #10b981;
+}
+
+.popup-icon.error {
+    color: #ef4444;
+}
+
+.popup-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+}
+
+.popup-message {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.popup-button {
+    background: #60a5fa;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    max-width: 200px;
+}
+
+.popup-button:hover {
+    background: #3b82f6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+}
+
+.popup-button:active {
+    transform: translateY(0);
+}
+
+@keyframes popupSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .popup {
+        padding: 1.5rem;
+        max-width: 350px;
+        width: 95%;
+    }
+    
+    .popup-icon {
+        font-size: 2.5rem;
+    }
+    
+    .popup-title {
+        font-size: 1.25rem;
+    }
+    
+    .popup-message {
+        font-size: 0.9rem;
+    }
+    
+    .popup-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup {
+        padding: 1.25rem;
+        max-width: 320px;
+        margin: 1rem;
+    }
+    
+    .popup-icon {
+        font-size: 2rem;
+    }
+    
+    .popup-title {
+        font-size: 1.1rem;
+    }
+    
+    .popup-message {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .popup-button {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.85rem;
+    }
+}

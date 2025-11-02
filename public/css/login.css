@@ -1,0 +1,440 @@
+/* Google-Style Login Page CSS */
+
+.login-body {
+    font-family: 'Roboto', sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 0;
+}
+
+.login-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 32px 40px 36px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+   
+}
+
+
+
+.login-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #202124;
+    margin: 0 0 4px 0;
+    line-height: 1.3333;
+}
+
+.login-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: #5f6368;
+    margin: 0 0 4px 0;
+    line-height: 1.5;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.form-input {
+    width: 100%;
+    height: 56px;
+    padding: 13px 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background-color:  #f2f5f8;
+    transition: all 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-input:hover {
+    background-color: #dee2e6;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-input:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+    transform: translateY(-1px);
+    padding: 13px 15px;
+}
+
+.form-input:focus + .input-label,
+.form-input:not(:placeholder-shown) + .input-label {
+    transform: translateY(-28px) scale(0.75);
+    color: #1a73e8;
+}
+
+.input-label {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    color: #5f6368;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+    padding: 0 4px;
+    transform-origin: left top;
+}
+
+.input-border {
+    display: none;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #5f6368;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.password-toggle:hover {
+    background-color: #f8f9fa;
+    color: #1a73e8;
+}
+
+.signin-btn {
+    width: 100%;
+    height: 40px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #dadce0;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.signin-btn:hover {
+    background: #60a5fa;
+    color: #ffffff;
+    border-color: #60a5fa;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.signin-btn:active {
+    background-color: #1557b0;
+    color: #ffffff;
+    border-color: #1557b0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.signin-btn:disabled {
+    background-color: #dadce0;
+    color: #5f6368;
+    cursor: not-allowed;
+}
+
+.btn-text {
+    display: block;
+}
+
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #dadce0;
+}
+
+.divider-text {
+    background-color: #ffffff;
+    color: #5f6368;
+    font-size: 14px;
+    padding: 0 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.register-Btn {
+    width: 100%;
+    height: 40px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #dadce0;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.register-Btn:hover {
+    background: #60a5fa;
+    color: #ffffff;
+    border-color: #60a5fa;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.register-Btn:active {
+    background-color: #1557b0;
+    color: #ffffff;
+    border-color: #1557b0;
+}
+
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 8px;
+    margin-top: 2px;
+    padding-right: 5px;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+}
+
+.forgot-link {
+    color: #60a5fa;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: color 0.2s ease;
+    display: inline-block;
+}
+
+.forgot-link:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+
+/* Error States */
+.form-input.error {
+    background-color: #fef2f2;
+    box-shadow: 0 0 0 3px rgba(217, 48, 37, 0.1);
+}
+
+.form-input.error:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(217, 48, 37, 0.2);
+}
+
+.error-message {
+    color: #d93025;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+.form-input.error ~ .error-message {
+    display: block;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 16px;
+        padding-top: 10px;
+    }
+    
+    .login-card {
+        padding: 20px 16px;
+    }
+    
+    .login-title {
+        font-size: 20px;
+    }
+    
+    .login-subtitle {
+        font-size: 14px;
+    }
+    
+    .form-input {
+        height: 48px;
+        font-size: 16px;
+    }
+    
+    .input-label {
+        font-size: 16px;
+    }
+    
+    .form-input:focus + .input-label,
+    .form-input:not(:placeholder-shown) + .input-label {
+        transform: translateY(-24px) scale(0.75);
+    }
+}
+
+@media (max-width: 360px) {
+    .login-card {
+        padding: 20px 16px;
+    }
+}
+
+/* Focus visible for accessibility */
+.form-input:focus-visible,
+.signin-btn:focus-visible,
+.register-Btn:focus-visible {
+    outline: 2px solid #1a73e8;
+    outline-offset: 2px;
+}
+
+
+/* Success states for form validation */
+.form-input.success {
+    background-color: #f0f9ff;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.form-input.success:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+/* Password strength indicator */
+.password-strength {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.password-strength.weak {
+    color: #d93025;
+}
+
+.password-strength.medium {
+    color: #f9ab00;
+}
+
+.password-strength.strong {
+    color: #34a853;
+}
+
+.firebase-auth-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.google-signin-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 24px;
+    background: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    color: #3c4043;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 10px 0;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.google-signin-btn:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+
+.google-signin-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.google-signin-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.divider-text {
+    padding: 0 20px;
+    color: #666;
+    font-size: 14px;
+}
+

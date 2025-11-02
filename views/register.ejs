@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up - CoinEdge</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+     <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/css/popup.css">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/loader.css">
+     <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="/css/sweetalert.css" rel="stylesheet">
+</head>
+<body class="login-body">
+    <!-- Register Container -->
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Logo Section -->
+            <div class="login-header">
+                <div class="logo-container">
+                    <img src="/assets/logo/CoinEdgeLogo.png" alt="CoinEdge Logo" class="login-logo">
+                </div>
+                <h1 class="login-title">Create your account</h1>
+                <p class="login-subtitle">Join CoinEdge today</p>
+            </div>
+
+            <!-- Register Form -->
+            <form class="login-form" id="registerForm" autocomplete="off">
+                <!-- Username Field -->
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="text" id="username" name="username" class="form-input" autocomplete="new-username" required>
+                        <label for="username" class="input-label">Username</label>
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="email" id="email" name="email" class="form-input" autocomplete="new-email" required>
+                        <label for="email" class="input-label">Email</label>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="password" id="password" name="password" class="form-input" autocomplete="new-password" required>
+                        <label for="password" class="input-label">Password</label>
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" autocomplete="new-password" required>
+                        <label for="confirmPassword" class="input-label">Confirm Password</label>
+                        <button type="button" class="password-toggle" id="confirmPasswordToggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Register Button -->
+                <button type="submit" class="signin-btn" id="registerBtn">
+                    <span class="btn-text">Create Account</span>
+                </button>
+
+                <!-- Divider -->
+                <div class="divider">
+                    <span class="divider-text">Already have an account?</span>
+                </div>
+
+                <!-- Sign In Button -->
+                <button type="button" class="register-Btn" id="signinBtn">
+                    <span>Sign In Here</span>
+                </button>
+
+                <!-- Home Button -->
+                        <div class="forgot-password">
+                            <a href="/" class="forgot-link" id="homeLink">
+                                <i class="fas fa-home" style="margin-right: 6px;"></i>
+                                Back to Home
+                            </a>
+                        </div>
+            </form>
+        </div>
+    </div>
+    <!-- <div class="loader-overlay" id="pageLoader" style="display: none;">
+        <div class="loader-container">
+            <div class="loader"></div>
+            <div class="loader-text">Creating Account...</div>
+        </div>
+    </div> -->
+            <!-- Simple Popup with Font Awesome Icons -->
+        <div id="popupOverlay" class="popup-overlay" style="display: none;">
+            <div class="popup">
+                <i class="popup-icon" id="popupIcon"></i>
+                <div class="popup-title" id="popupTitle"></div>
+                <div class="popup-message" id="popupMessage"></div>
+                 <button class="popup-button" id="popupButton">OK</button>
+            </div>
+        </div>
+    <!-- Bootstrap JS -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Custom JS -->
+    <script src="/js/register.js"></script>
+     <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

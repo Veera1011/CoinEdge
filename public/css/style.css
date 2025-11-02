@@ -1,0 +1,708 @@
+/* ===========================================
+   OPTIMIZED RESPONSIVE CSS - CLEAN VERSION
+   =========================================== */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background: #ffffff;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+
+.hero-section {
+    padding: 2rem 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.hero-left {
+    flex: 1;
+}
+
+.hero-right {
+    flex: 1;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: #000000;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Hero Slider */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #f8fafc;
+    margin: 0 auto;
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.slider-image.active {
+    opacity: 1;
+}
+
+/* Slider Controls */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    
+    background: #60a5fa;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.slider-btn:hover {
+    background: #2563eb;
+    transform:  scale(1.1);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+/* .slider-btn:active {
+    transform: translateY(-50%) scale(0.95);
+} */
+
+.slider-prev {
+    left: 2px;
+}
+
+.slider-next {
+    right: 2px;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid black;
+}
+
+.dot.active {
+    background: #60a5fa;
+    border-color: #60a5fa;
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+}
+
+/* Button */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    gap: 0.5rem;
+}
+
+.btn-warning {
+    background: #60a5fa;
+    color: #ffffff;
+    border: 2px solid #60a5fa;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.btn-warning:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-2px);
+}
+
+.btn i {
+    margin-right: 0.5rem;
+}
+
+/* ===========================================
+   FEATURES SECTION
+   =========================================== */
+
+.features-section {
+    background: #ffffff;
+    padding: 3rem 0;
+}
+
+.features-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.features-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 0.5rem;
+}
+
+.features-subtitle {
+    font-size: 1.1rem;
+    color: #000000;
+    opacity: 0.8;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    margin-bottom: 1rem;
+}
+
+.feature-gif {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.feature-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 0.75rem;
+}
+
+.feature-description {
+    color: #000000;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* ===========================================
+   INNOVATION SECTION
+   =========================================== */
+
+.innovation-section {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 3rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.innovation-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.innovation-left {
+    flex: 1;
+}
+
+.innovation-right {
+    flex: 1;
+}
+
+.innovation-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.idea-gif {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.innovation-description {
+    font-size: 1.1rem;
+    color: #000000;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.innovation-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.innovation-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.innovation-feature-item i {
+    color: #60a5fa;
+    font-size: 1rem;
+}
+
+.innovation-feature-item span {
+    color: #000000;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.innovation-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.innovation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.market-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.market-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.stat-label {
+    color: #000000;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.stat-positive {
+    color: #10b981;
+}
+
+.stat-negative {
+    color: #ef4444;
+}
+
+.stat-primary {
+    color: #60a5fa;
+}
+
+
+
+
+/* ===========================================
+   RESPONSIVE DESIGN - SINGLE SET
+   =========================================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .hero-row {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-slider {
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+    
+    .slider-container {
+        height: 300px;
+        border-radius: 12px;
+    }
+    
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+    }
+    
+    .slider-prev {
+        left: 5px;
+    }
+    
+    .slider-next {
+        right: 5px;
+    }
+    
+    .slider-dots {
+        top:280px;
+        gap: 8px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .features-title {
+        font-size: 2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem 1rem;
+    }
+      .innovation-card {
+        padding: 1.25rem;
+        margin-bottom: 100px;
+    }
+    
+    .innovation-row {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .innovation-title {
+        font-size: 2rem;
+        justify-content: center;
+    }
+    
+    .innovation-feature-item {
+        justify-content: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+    }
+    
+    .hero-slider {
+        padding: 0 0.25rem;
+        margin-top: 1rem;
+    }
+    
+    .slider-container {
+        height: 250px;
+        border-radius: 10px;
+    }
+    
+    .slider-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 11px;
+    }
+    
+    .slider-prev {
+        left: 5px;
+    }
+    
+    .slider-next {
+        right: 5px;
+    }
+    
+    .slider-dots {
+        
+       top:235px;
+        gap: 6px;
+    }
+    
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .btn-warning {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .features-title {
+        font-size: 1.8rem;
+    }
+    
+    .feature-card {
+        padding: 1.25rem 0.75rem;
+    }
+    
+    .feature-gif {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .innovation-title {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .idea-gif {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .innovation-card {
+        padding: 1.25rem;
+        margin-bottom: 100px;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .slider-container {
+        height: 220px;
+    }
+    
+    .slider-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 10px;
+    }
+    
+    .slider-prev {
+        left: 5px;
+    }
+    
+    .slider-next {
+        right: 5px;
+    }
+    
+    .dot {
+        width: 7px;
+        height: 7px;
+    }
+    
+    .features-title {
+        font-size: 1.6rem;
+    }
+    
+    .innovation-title {
+        font-size: 1.6rem;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .slider-container {
+        height: 200px;
+    }
+    
+    .hero-slider {
+        margin-top: 0.5rem;
+    }
+}
+
+
+/* Touch Device Improvements */
+@media (hover: none) and (pointer: coarse) {
+    .slider-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
+    
+    .slider-prev {
+        left: 5px;
+    }
+    
+    .slider-next {
+        right: 5px;
+    }
+    
+    .dot {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .slider-dots {
+        gap: 12px;
+        bottom: 18px;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .slider-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .slider-image,
+    .slider-btn,
+    .dot {
+        transition: none;
+    }
+    
+    .slider-btn:hover {
+        transform: translateY(-50%);
+    }
+}
+
+/* Focus States for Accessibility */
+
+
+.dot:focus {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
+}
+
+

@@ -1,0 +1,226 @@
+    <%- include('layout', { body: `
+        <div class="dashboard-container">
+            <!-- Section 1: Today Report Card -->
+            <div class="today-report-section">
+                <div class="today-report-card">
+                    <div class="report-header">
+                        <h4 class="report-title">Today Report</h4>
+                        <span class="report-date" id="todayDate">5-Oct-2025</span>
+                    </div>
+                    <div class="report-content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="sub-card">
+                                    <div class="sub-card-header">
+                                        <h6>Account Balance</h6>
+                                    </div>
+                                    <div class="sub-card-value">$12,450.00</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="sub-card">
+                                    <div class="sub-card-header">
+                                        <h6>Today's PNL</h6>
+                                    </div>
+                                    <div class="sub-card-value positive">+$245.50</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="sub-card">
+                                    <div class="sub-card-header">
+                                        <h6>Today's Gain</h6>
+                                    </div>
+                                    <div class="sub-card-value positive">+2.1%</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="sub-card">
+                                    <div class="sub-card-header">
+                                        <h6>Balance Report</h6>
+                                    </div>
+                                    <div class="sub-card-value">$12,695.50</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Action Buttons -->
+            <div class="action-section">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button class="action-btn transfer">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Transfer</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="action-btn deposit">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Deposit</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="action-btn withdraw">
+                            <i class="fas fa-minus-circle"></i>
+                            <span>Withdraw</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Portfolio Holdings -->
+            <div class="portfolio-section">
+                <div class="portfolio-container">
+                    <h4 class="portfolio-heading">My Portfolio</h4>
+                    <div class="portfolio-summary">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="fas fa-wallet"></i>
+                                    </div>
+                                    <div class="summary-content">
+                                        <h6>Total Value</h6>
+                                        <span class="summary-value">$12,695.50</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="summary-content">
+                                        <h6>24h Change</h6>
+                                        <span class="summary-value positive">+$245.50 (+2.1%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="fas fa-coins"></i>
+                                    </div>
+                                    <div class="summary-content">
+                                        <h6>Holdings</h6>
+                                        <span class="summary-value">8 Assets</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="holdings-table-container">
+                        <h5 class="holdings-title">Holdings</h5>
+                        <table class="holdings-table">
+                            <thead>
+                                <tr>
+                                    <th>Asset</th>
+                                    <th>Balance</th>
+                                    <th>Value</th>
+                                    <th>24h Change</th>
+                                    <th>Allocation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="asset-cell">
+                                        <div class="asset-info">
+                                            <div class="asset-icon btc-icon">₿</div>
+                                            <div class="asset-details">
+                                                <span class="asset-symbol">BTC</span>
+                                                <span class="asset-name">Bitcoin</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="balance-cell">0.245 BTC</td>
+                                    <td class="value-cell">$11,081.25</td>
+                                    <td class="change-cell positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+$245.50 (+2.1%)</span>
+                                    </td>
+                                    <td class="allocation-cell">
+                                        <div class="allocation-bar">
+                                            <div class="allocation-fill" style="width: 87%"></div>
+                                        </div>
+                                        <span class="allocation-text">87%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="asset-cell">
+                                        <div class="asset-info">
+                                            <div class="asset-icon eth-icon">Ξ</div>
+                                            <div class="asset-details">
+                                                <span class="asset-symbol">ETH</span>
+                                                <span class="asset-name">Ethereum</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="balance-cell">0.5 ETH</td>
+                                    <td class="value-cell">$1,622.84</td>
+                                    <td class="change-cell negative">
+                                        <i class="fas fa-arrow-down"></i>
+                                        <span>-$45.23 (-2.7%)</span>
+                                    </td>
+                                    <td class="allocation-cell">
+                                        <div class="allocation-bar">
+                                            <div class="allocation-fill" style="width: 13%"></div>
+                                        </div>
+                                        <span class="allocation-text">13%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="asset-cell">
+                                        <div class="asset-info">
+                                            <div class="asset-icon sol-icon">◎</div>
+                                            <div class="asset-details">
+                                                <span class="asset-symbol">SOL</span>
+                                                <span class="asset-name">Solana</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="balance-cell">5.2 SOL</td>
+                                    <td class="value-cell">$512.34</td>
+                                    <td class="change-cell positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+$28.45 (+5.9%)</span>
+                                    </td>
+                                    <td class="allocation-cell">
+                                        <div class="allocation-bar">
+                                            <div class="allocation-fill" style="width: 4%"></div>
+                                        </div>
+                                        <span class="allocation-text">4%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="asset-cell">
+                                        <div class="asset-info">
+                                            <div class="asset-icon bnb-icon">B</div>
+                                            <div class="asset-details">
+                                                <span class="asset-symbol">BNB</span>
+                                                <span class="asset-name">Binance Coin</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="balance-cell">2.1 BNB</td>
+                                    <td class="value-cell">$656.07</td>
+                                    <td class="change-cell positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+$12.34 (+1.9%)</span>
+                                    </td>
+                                    <td class="allocation-cell">
+                                        <div class="allocation-bar">
+                                            <div class="allocation-fill" style="width: 5%"></div>
+                                        </div>
+                                        <span class="allocation-text">5%</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ` }) %>

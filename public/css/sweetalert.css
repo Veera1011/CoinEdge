@@ -1,0 +1,66 @@
+/* SweetAlert2 Custom Styling */
+.swal-confirm-btn {
+    background-color: #60a5fa !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 2rem !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.swal-confirm-btn:hover {
+    background-color: #3b82f6 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3) !important;
+}
+
+/* Custom SweetAlert2 popup styling */
+.swal2-popup {
+    border-radius: 12px !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.swal2-title {
+    font-weight: 600 !important;
+    color: #1f2937 !important;
+}
+
+.swal2-content {
+    color: #6b7280 !important;
+    font-size: 1rem !important;
+}
+
+/* Success icon styling */
+.swal2-success {
+    border-color: #10b981 !important;
+}
+
+.swal2-success [class^=swal2-success-line] {
+    background-color: #10b981 !important;
+}
+
+/* Error icon styling */
+.swal2-error {
+    border-color: #ef4444 !important;
+}
+
+.swal2-error [class^=swal2-x-mark-line] {
+    background-color: #ef4444 !important;
+}
+
+/* SweetAlert2 Loader Styling */
+.swal-loader-popup {
+    border-radius: 20px !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.swal-loader-popup .swal2-loader {
+    border-color: #f3f3f3 !important;
+    border-top-color: #60a5fa !important;
+    border-width: 4px !important;
+    width: 60px !important;
+    height: 60px !important;
+}
+
+

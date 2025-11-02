@@ -1,0 +1,63 @@
+<%- include('layout', { body: `
+    <!-- Loader -->
+    <!-- <div class="loader-overlay" id="depositLoader">
+        <div class="loader-container">
+            <div class="loader"></div>
+            <div class="loader-text">Loading cryptocurrency data...</div>
+        </div>
+    </div> -->
+
+    <div class="deposit-container" id="depositContainer" style="display: none;">
+        <div class="deposit-header">
+            <h1 class="deposit-title">Deposit</h1>
+        </div>
+        
+        <div class="deposit-content">
+            <!-- First Section: Selected Crypto Display with Dropdown -->
+            <div class="selected-crypto-section">
+                <div class="selected-crypto-card" id="selectedCryptoCard">
+                    <div class="crypto-info" id="cryptoInfo">
+                        <img src="" alt="" class="crypto-logo" id="selectedCryptoLogo">
+                        <span class="crypto-symbol" id="selectedCryptoSymbol">ETH</span>
+                        <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
+                    </div>
+                </div>
+                
+                <!-- Dropdown List -->
+                <div class="crypto-dropdown" id="cryptoDropdown" style="display: none;">
+                    <div class="crypto-list" id="cryptoList">
+                        <!-- Crypto options will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="exchange-rate-info">
+                    <div class="exchange-rate-row">
+                        <span class="exchange-rate-label">Exchange Rate</span>
+                        <span class="exchange-rate-value" id="exchangeRateValue">1 ETH = $4105.49</span>
+                    </div>
+                    <!-- <div class="support-link">
+                        <a href="#" class="support-text">Didn't Receive Your Deposit? <span class="click-here">Click here!</span></a>
+                    </div> -->
+                </div>
+            </div>
+            
+            <!-- Deposit Details Section -->
+            <div class="deposit-details-section" id="depositDetailsSection">
+                <div class="deposit-details-card">
+                    <div class="qr-code-container">
+                        <div class="qr-code" id="qrCode">
+                            <!-- QR code will be generated here -->
+                        </div>
+                    </div>
+                    <div class="deposit-address-container">
+                        <div class="deposit-address" id="depositAddress">0xFF5885E5d7b9dA18485440AB73F16d5410627798</div>
+                        <button class="copy-btn" id="copyBtn">Copy</button>
+                    </div>
+                    <div class="deposit-note">
+                        <p>Note: Only send <span class="crypto-highlight" id="cryptoHighlight">ETH</span> to this deposit address. The coins will be automatically deposited and converted to USDT after network confirmation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+` }) %>

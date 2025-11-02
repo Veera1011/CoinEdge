@@ -1,0 +1,114 @@
+/* ===== Container & Layout ===== */
+.settings-container {
+  min-height: 100vh;
+  background: rgb(247, 247, 247);
+  color: #fff;
+  padding-top: 80px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Header ===== */
+.settings-header {
+  text-align: center;
+  color: #000;
+}
+
+.settings-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* ===== Settings List ===== */
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center; /* Centers all items vertically */
+  background: #60a5fa;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.settings-item:hover{
+      color: #000;
+      transform: translateY(-2px);
+}
+.settings-item i {
+  font-size: 1.5rem;
+  color: #0f0f0f;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Prevents icon from shrinking */
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: row; /* Change to row for horizontal layout */
+  align-items: center; /* Centers h5 and span vertically */
+  margin-left: 1rem;
+  flex: 1;
+  gap: 0.5rem; /* Small gap between h5 and span */
+}
+
+.settings-content h5 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+.settings-content span {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* ===== Account Info ===== */
+.account-balance-container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: #000;
+}
+
+.balance-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.balance-info i {
+  margin-right: 0.5rem;
+}
+
+.balance-amount {
+  font-weight: bold;
+  margin-left: 0.5rem;
+    font-size: 2rem;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settings-title {
+    font-size: 2rem;
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+  }
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - CoinEdge</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
+    <link href="/css/popup.css" rel="stylesheet">
+    <link href="/css/loader.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="/css/sweetalert.css" rel="stylesheet">
+</head>
+
+<body class="login-body">
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Logo Section -->
+            <div class="login-header">
+                <div class="logo-container">
+                    <img src="/assets/logo/CoinEdgeLogo.png" alt="CoinEdge Logo" class="login-logo">
+                </div>
+                <h1 class="login-title">Sign in to CoinEdge</h1>
+                <p class="login-subtitle">Use your email or Google account</p>
+            </div>
+
+            <!-- Google Sign In Button -->
+            <div class="firebase-auth-section">
+                <button id="googleSignInBtn" class="google-signin-btn">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google">
+                    Continue with Google
+                </button>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span class="divider-text">or</span>
+            </div>
+
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm" autocomplete="off">
+                <!-- Email Field -->
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="email" id="email" name="email" class="form-input" autocomplete="new-email" required>
+                        <label for="email" class="input-label">Email</label>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="password" id="password" name="password" class="form-input" autocomplete="new-password" required>
+                        <label for="password" class="input-label">Password</label>
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sign In Button -->
+                <button type="submit" class="signin-btn" id="signinBtn">
+                    <span class="btn-text">Sign In</span>
+                </button>
+
+                <!-- Forgot Password -->
+                <div class="forgot-password">
+                    <a href="/auth/forgot-password" class="forgot-link" id="forgotPasswordLink">
+                        <i class="fas fa-key" style="margin-right: 6px;"></i>
+                        Forgot your password?
+                    </a>
+                </div>
+
+                <!-- Divider -->
+                <div class="divider">
+                    <span class="divider-text">Don't have an account?</span>
+                </div>
+
+                <!-- Register Button -->
+                <button type="button" class="register-Btn" id="registerBtn">
+                    <span>Register Here</span>
+                </button>
+
+                <!-- Home Button -->
+                <div class="forgot-password">
+                    <a href="/" class="forgot-link" id="homeLink">
+                        <i class="fas fa-home" style="margin-right: 6px;"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div id="popupOverlay" class="popup-overlay" style="display: none;">
+        <div class="popup">
+            <i class="popup-icon" id="popupIcon"></i>
+            <div class="popup-title" id="popupTitle"></div>
+            <div class="popup-message" id="popupMessage"></div>
+            <button class="popup-button" id="popupButton">OK</button>
+        </div>
+    </div>
+
+    <!-- Scripts - Use correct Firebase CDN URLs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    
+    <!-- Load your Firebase auth script -->
+    <script src="/js/firebase-auth.js"></script>
+    
+    <!-- Event listener for Google sign-in button -->
+    <script>
+        document.getElementById('googleSignInBtn').addEventListener('click', signInWithGoogle);
+    </script>
+    
+    <!-- Other scripts -->
+    <script src="/js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

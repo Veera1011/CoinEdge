@@ -1,0 +1,70 @@
+<%- include('layout', { body: `
+<div class="settings-container">
+    <div class="container">
+
+        <!-- Settings Header -->
+        <header class="settings-header">
+            <h1 class="settings-title">
+                <i class="fas fa-cog"></i> Settings
+            </h1>
+        </header>
+        
+        <!-- Settings List -->
+        <section class="settings-section">
+            <div class="settings-list">
+
+                <div class="settings-item" onclick="navigateTo('/user/dashboard')">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="settings-content">
+                        <h5>Trade</h5>
+                    </div>
+                </div>
+
+                <div class="settings-item" onclick="navigateTo('/user/portfolio')">
+                    <i class="fas fa-history"></i>
+                    <div class="settings-content">
+                        <h5>Trade History</h5>
+                    </div>
+                </div>
+
+                <div class="settings-item" onclick="navigateTo('/user/customer-care')">
+                    <i class="fas fa-headset"></i>
+                    <div class="settings-content">
+                        <h5>Customer Care</h5>
+                    </div>
+                </div>
+
+                <div class="settings-item" onclick="navigateTo('/user/deposit')">
+                    <i class="fas fa-plus-circle"></i>
+                    <div class="settings-content">
+                        <h5>Deposit</h5>
+                    </div>
+                </div>
+
+                <div class="settings-item" onclick="navigateTo('/user/loan')">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <div class="settings-content">
+                        <h5>Loan  </h5>
+                    </div>
+                </div>
+                <div class="settings-item" onclick="navigateTo('/user/withdraw')">
+                    <i class="fas fa-money-bill-wave"></i> 
+                    <div class="settings-content">
+                        <h5>Withdraw</h5>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+     
+
+    </div>
+</div>
+` }) %>
+
+<script>
+function navigateTo(path) {
+    window.location.href = path;
+}
+</script>

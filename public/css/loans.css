@@ -1,0 +1,67 @@
+/* ===========================================
+   LOANS SECTION
+   =========================================== */
+
+.loans-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+}
+
+.loans-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -0.75rem;
+}
+
+.loans-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 0.75rem;
+    text-align: center;
+}
+
+.loans-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.loans-subtitle {
+    font-size: 1.25rem;
+    color: #000000;
+    margin-bottom: 0;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+/* Responsive Design for Loans Section */
+@media (max-width: 768px) {
+    .loans-container {
+        padding: 2rem 1rem;
+    }
+    
+    .loans-title {
+        font-size: 2.5rem;
+    }
+    
+    .loans-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .loans-container {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .loans-title {
+        font-size: 2rem;
+    }
+    
+    .loans-subtitle {
+        font-size: 1rem;
+    }
+}

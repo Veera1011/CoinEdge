@@ -1,0 +1,396 @@
+/* Withdraw Page - Clean Design */
+.withdraw-container {
+    background: #ffffff;
+    padding: 1rem;
+    margin-top: 90px;
+    min-height: calc(100vh - 90px);
+}
+
+/* Base Card Styles */
+.balance-card,
+.message-card,
+.withdraw-form-card,
+.history-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* Balance Card - Special Header Style */
+.balance-card {
+    border: 2px solid #3b82f6;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.1);
+}
+
+.balance-card:hover {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Message Card Styles */
+.message-card {
+    border: 2px solid;
+    animation: slideDown 0.3s ease-out;
+}
+
+.message-card.success {
+    border-color: #059669;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.message-card.error {
+    border-color: #dc2626;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.message-card.warning {
+    border-color: #d97706;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.message-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.message-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.message-card.success .message-icon {
+    color: #059669;
+}
+
+.message-card.error .message-icon {
+    color: #dc2626;
+}
+
+.message-card.warning .message-icon {
+    color: #d97706;
+}
+
+.message-text {
+    flex: 1;
+}
+
+.message-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #000000;
+}
+
+.message-description {
+    font-size: 1rem;
+    margin: 0;
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* Withdraw Form Card - Combined Input and Button */
+.withdraw-form-card {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.withdraw-form-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.withdraw-form-card:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group:last-of-type {
+    margin-bottom: 2rem;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* History Card - Data Display Style */
+.history-card {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    margin-bottom: 100px;
+}
+
+.history-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+}
+
+.balance-info {
+    text-align: center;
+    padding: 0.3rem;
+    background: rgba(59, 130, 246, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.balance-label {
+    display: block;
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.balance-amount {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #3b82f6;
+}
+
+.input-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 0.75rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #000000;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.input-field::placeholder {
+    color: #94a3b8;
+}
+
+.withdraw-button {
+    padding: 0.875rem 2.5rem;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    min-width: 140px;
+    max-width: 200px;
+}
+
+.withdraw-button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.withdraw-button:active {
+    transform: translateY(0);
+}
+
+.withdraw-button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.history-content {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.no-history {
+    text-align: center;
+    color: #64748b;
+}
+
+.no-history i {
+    font-size: 2.5rem;
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.no-history p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .withdraw-container {
+        padding: 0.75rem;
+        margin-top: 80px;
+    }
+    
+    .balance-card,
+    .message-card,
+    .withdraw-form-card,
+    .history-card {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .history-card {
+        margin-bottom: 100px;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+    }
+    
+    .balance-amount {
+        font-size: 1.75rem;
+    }
+    
+    .input-field {
+        padding: 0.875rem;
+    }
+    
+    .withdraw-button {
+        padding: 0.75rem 2rem;
+        font-size: 0.95rem;
+        min-width: 120px;
+        max-width: 180px;
+    }
+
+    .message-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .message-icon {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .withdraw-container {
+        padding: 0.5rem;
+        margin-top: 70px;
+    }
+    
+    .balance-card,
+    .message-card,
+    .withdraw-form-card {
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .history-card {
+        padding: 1rem;
+        margin-bottom: 100px;
+    }
+    
+    .card-title {
+        font-size: 1.25rem;
+    }
+    
+    .balance-amount {
+        font-size: 1.5rem;
+    }
+    
+    .input-field {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+    }
+    
+    .withdraw-button {
+        padding: 0.625rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 100px;
+        max-width: 160px;
+    }
+    
+    .no-history i {
+        font-size: 2rem;
+    }
+
+    .message-title {
+        font-size: 1.1rem;
+    }
+
+    .message-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* Focus States for Accessibility */
+.input-field:focus,
+.withdraw-button:focus {
+    outline: none;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .balance-card,
+    .message-card,
+    .withdraw-form-card,
+    .history-card {
+        border-width: 2px;
+        border-color: #000000;
+    }
+    
+    .input-field {
+        border-width: 2px;
+        border-color: #000000;
+    }
+    
+    .withdraw-button {
+        border: 2px solid #000000;
+    }
+}

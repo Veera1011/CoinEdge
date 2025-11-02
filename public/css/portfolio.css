@@ -1,0 +1,337 @@
+/* Portfolio Section Styles */
+.portfolio-section {
+    margin-bottom: 30px;
+}
+
+.portfolio-container {
+    background: rgb(247, 247, 247);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.portfolio-heading {
+    margin: 0 0 20px 0;
+    color: #333;
+    font-weight: 700;
+    font-size: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.portfolio-summary {
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+}
+
+.summary-icon {
+    width: 50px;
+    height: 50px;
+    background: #60a5fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.summary-content h6 {
+    margin: 0 0 5px 0;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.summary-value.positive {
+    color: #10b981;
+}
+
+.holdings-table-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.holdings-title {
+    margin: 0 0 20px 0;
+    color: #333;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.holdings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.holdings-table th {
+    padding: 15px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: #666;
+    border-bottom: 2px solid #f1f3f4;
+}
+
+.holdings-table td {
+    padding: 15px 10px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.holdings-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.asset-cell {
+    width: 25%;
+}
+
+.asset-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.asset-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+}
+
+.btc-icon {
+    background: #f7931a;
+}
+
+.eth-icon {
+    background: #627eea;
+}
+
+.sol-icon {
+    background: #9945ff;
+}
+
+.bnb-icon {
+    background: #f3ba2f;
+    color: #000;
+}
+
+.xrp-icon {
+    background: #23292f;
+}
+
+.doge-icon {
+    background: #c2a633;
+}
+
+.aave-icon {
+    background: #b6509e;
+}
+
+.uni-icon {
+    background: #ff007a;
+}
+
+.sui-icon {
+    background: #5fac5d;
+}
+
+.ltc-icon {
+    background: #bfbbbb;
+}
+
+.asset-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.asset-symbol {
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+}
+
+.asset-name {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.balance-cell {
+    width: 20%;
+    font-weight: 600;
+    color: #333;
+}
+
+.value-cell {
+    width: 20%;
+    font-weight: 600;
+    color: #333;
+}
+
+.change-cell {
+    width: 20%;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.change-cell.positive {
+    color: #10b981;
+}
+
+.change-cell.negative {
+    color: #ef4444;
+}
+
+.change-cell i {
+    font-size: 12px;
+}
+
+.allocation-cell {
+    width: 15%;
+}
+
+.allocation-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.allocation-fill {
+    height: 100%;
+    background: #60a5fa;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.allocation-text {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Responsive Design for Portfolio */
+@media (max-width: 768px) {
+    .portfolio-container {
+        padding: 20px;
+    }
+    
+    .portfolio-heading {
+        font-size: 18px;
+    }
+    
+    .summary-card {
+        padding: 15px;
+        gap: 10px;
+    }
+    
+    .summary-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .summary-value {
+        font-size: 16px;
+    }
+    
+    .holdings-table-container {
+        padding: 15px;
+    }
+    
+    .holdings-table {
+        font-size: 14px;
+    }
+    
+    .holdings-table th,
+    .holdings-table td {
+        padding: 12px 8px;
+    }
+    
+    .asset-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .asset-symbol {
+        font-size: 14px;
+    }
+    
+    .asset-name {
+        font-size: 11px;
+    }
+    
+    .allocation-bar {
+        height: 6px;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio-container {
+        padding: 15px;
+    }
+    
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .holdings-table {
+        font-size: 12px;
+    }
+    
+    .holdings-table th,
+    .holdings-table td {
+        padding: 8px 5px;
+    }
+    
+    .asset-info {
+        gap: 8px;
+    }
+    
+    .asset-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+

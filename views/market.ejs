@@ -1,0 +1,33 @@
+<%- include('layout', { body: ` <div class="marketdata-container">
+    <div class="trading-section">
+        <div class="table-container">
+            <h4 class="table-heading">Market Data</h4>
+            <table class="trading-table">
+                <thead>
+                    <tr>
+                        <th>Coins</th>
+                        <th>Coin / Symbol</th>
+                        <th>Current Price (USD)</th>
+                        <th>7-Day Trend</th>
+                        <th>Market Cap (USD)</th>
+                        <th>24h Change (%)</th>
+                        <th>7-Day Change (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="crypto-table-body">
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 20px;">
+                            <div id="crypto-loading-placeholder" style="display: none;">
+                                <!-- This will be controlled by JavaScript -->
+                            </div>
+                        </td>
+                    </tr>
+                    </tr>
+                </tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+    ` }) %>
