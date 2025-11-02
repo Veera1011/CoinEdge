@@ -10,7 +10,6 @@ const authRoutes = require("./routes/auth")
 const homeRoutes = require("./routes/homeRoute")
 const userRoutes = require("./routes/userpage")
 
-
 // Set EJS as template engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(rootMainFile, 'views'));
@@ -20,23 +19,34 @@ app.use(express.static(path.join(rootMainFile, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 // Routes
 app.use('/', homeRoutes)
 app.use('/user' , userRoutes)
 app.use('/auth' , authRoutes);
 
-
-
-const ip="192.168.0.4:3000"
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
- 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// 404 handler
+app.use((req, res) => {
+  res.status(404).render('404', { title: 'Page Not Found' });
+});
 
-// app.listen(PORT, () => {
-//   console.log(`Server running on http://localhost:${PORT}`);
-// });
+// Error handler
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ 
+    success: false, 
+    message: 'Internal server error',
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
+  });
+});
 
-
+// Start server
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔗 Access: http://localhost:${PORT}`);
+});
