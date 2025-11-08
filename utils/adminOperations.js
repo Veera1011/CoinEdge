@@ -1,5 +1,4 @@
-// utils/adminOperations.js
-// Utility functions for manually updating user data via Firebase Admin
+// utils/adminOperations.js - UPDATED to work with email or document ID
 
 const admin = require('firebase-admin');
 const userModel = require('../models/userModel');
@@ -10,18 +9,41 @@ class AdminOperations {
     }
 
     /**
-     * Manually add balance to a user
-     * @param {string} userEmail - User's email (document ID)
+     * Get user by email or ID
+     * @param {string} emailOrId - User's email or document ID
+     */
+    async getUserIdentifier(emailOrId) {
+        // Check if it's an email (contains @)
+        if (emailOrId.includes('@')) {
+            const user = await userModel.getUserByEmail(emailOrId);
+            if (!user) {
+                throw new Error(`User not found with email: ${emailOrId}`);
+            }
+            return user.id; // Return the document ID
+        }
+        
+        // Otherwise, assume it's already a document ID
+        const user = await userModel.getUserById(emailOrId);
+        if (!user) {
+            throw new Error(`User not found with ID: ${emailOrId}`);
+        }
+        return emailOrId;
+    }
+
+    /**
+     * Add balance to a user
+     * @param {string} emailOrId - User's email or document ID
      * @param {number} amount - Amount to add
      */
-    async addBalanceToUser(userEmail, amount) {
+    async addBalanceToUser(emailOrId, amount) {
         try {
-            console.log(`Adding $${amount} to user: ${userEmail}`);
+            const userId = await this.getUserIdentifier(emailOrId);
+            console.log(`Adding $${amount} to user: ${userId}`);
             
-            const result = await userModel.updateUserBalance(userEmail, amount, 'add');
+            const result = await userModel.updateUserBalance(userId, amount, 'add');
             
             // Record as deposit transaction
-            await userModel.recordTransaction(userEmail, {
+            await userModel.recordTransaction(userId, {
                 type: 'deposit',
                 amount: amount,
                 status: 'completed',
@@ -37,18 +59,19 @@ class AdminOperations {
     }
 
     /**
-     * Manually deduct balance from a user
-     * @param {string} userEmail - User's email (document ID)
+     * Deduct balance from a user
+     * @param {string} emailOrId - User's email or document ID
      * @param {number} amount - Amount to deduct
      */
-    async deductBalanceFromUser(userEmail, amount) {
+    async deductBalanceFromUser(emailOrId, amount) {
         try {
-            console.log(`Deducting $${amount} from user: ${userEmail}`);
+            const userId = await this.getUserIdentifier(emailOrId);
+            console.log(`Deducting $${amount} from user: ${userId}`);
             
-            const result = await userModel.updateUserBalance(userEmail, amount, 'subtract');
+            const result = await userModel.updateUserBalance(userId, amount, 'subtract');
             
             // Record as withdrawal transaction
-            await userModel.recordTransaction(userEmail, {
+            await userModel.recordTransaction(userId, {
                 type: 'withdrawal',
                 amount: amount,
                 status: 'completed',
@@ -65,14 +88,15 @@ class AdminOperations {
 
     /**
      * Set user's balance to a specific amount
-     * @param {string} userEmail - User's email (document ID)
+     * @param {string} emailOrId - User's email or document ID
      * @param {number} newBalance - New balance amount
      */
-    async setUserBalance(userEmail, newBalance) {
+    async setUserBalance(emailOrId, newBalance) {
         try {
-            console.log(`Setting balance for user ${userEmail} to $${newBalance}`);
+            const userId = await this.getUserIdentifier(emailOrId);
+            console.log(`Setting balance for user ${userId} to $${newBalance}`);
             
-            const userRef = this.db.collection('users').doc(userEmail);
+            const userRef = this.db.collection('users').doc(userId);
             await userRef.update({
                 balance: parseFloat(newBalance),
                 updatedAt: admin.firestore.FieldValue.serverTimestamp()
@@ -88,15 +112,16 @@ class AdminOperations {
 
     /**
      * Update user's today report (PnL and Gain)
-     * @param {string} userEmail - User's email
+     * @param {string} emailOrId - User's email or document ID
      * @param {number} pnl - Today's PnL
      * @param {number} gain - Today's gain percentage
      */
-    async updateUserTodayReport(userEmail, pnl, gain) {
+    async updateUserTodayReport(emailOrId, pnl, gain) {
         try {
-            console.log(`Updating today's report for ${userEmail}: PnL=$${pnl}, Gain=${gain}%`);
+            const userId = await this.getUserIdentifier(emailOrId);
+            console.log(`Updating today's report for ${userId}: PnL=$${pnl}, Gain=${gain}%`);
             
-            await userModel.updateTodayReport(userEmail, pnl, gain);
+            await userModel.updateTodayReport(userId, pnl, gain);
             
             console.log(`✅ Successfully updated today's report`);
             return { success: true };
@@ -108,15 +133,15 @@ class AdminOperations {
 
     /**
      * Update user's holdings
-     * @param {string} userEmail - User's email
+     * @param {string} emailOrId - User's email or document ID
      * @param {Array} holdings - Array of holdings objects
-     * Example: [{symbol: 'BTC', name: 'Bitcoin', balance: 0.5, value: 25000, allocation: 50, change24h: 2.5}]
      */
-    async updateUserHoldings(userEmail, holdings) {
+    async updateUserHoldings(emailOrId, holdings) {
         try {
-            console.log(`Updating holdings for ${userEmail}`);
+            const userId = await this.getUserIdentifier(emailOrId);
+            console.log(`Updating holdings for ${userId}`);
             
-            await userModel.updateUserHoldings(userEmail, holdings);
+            await userModel.updateUserHoldings(userId, holdings);
             
             console.log(`✅ Successfully updated holdings`);
             return { success: true };
@@ -128,18 +153,19 @@ class AdminOperations {
 
     /**
      * Get user's complete data
-     * @param {string} userEmail - User's email
+     * @param {string} emailOrId - User's email or document ID
      */
-    async getUserData(userEmail) {
+    async getUserData(emailOrId) {
         try {
-            const user = await userModel.getUserById(userEmail);
+            const userId = await this.getUserIdentifier(emailOrId);
+            const user = await userModel.getUserById(userId);
             
             if (!user) {
-                console.log(`❌ User not found: ${userEmail}`);
+                console.log(`❌ User not found: ${emailOrId}`);
                 return null;
             }
 
-            console.log(`✅ User data for ${userEmail}:`);
+            console.log(`✅ User data for ${emailOrId}:`);
             console.log(JSON.stringify(user, null, 2));
             return user;
         } catch (error) {
@@ -150,14 +176,15 @@ class AdminOperations {
 
     /**
      * Record a manual transaction
-     * @param {string} userEmail - User's email
+     * @param {string} emailOrId - User's email or document ID
      * @param {object} transactionData - Transaction details
      */
-    async recordManualTransaction(userEmail, transactionData) {
+    async recordManualTransaction(emailOrId, transactionData) {
         try {
-            console.log(`Recording manual transaction for ${userEmail}`);
+            const userId = await this.getUserIdentifier(emailOrId);
+            console.log(`Recording manual transaction for ${userId}`);
             
-            const transaction = await userModel.recordTransaction(userEmail, transactionData);
+            const transaction = await userModel.recordTransaction(userId, transactionData);
             
             console.log(`✅ Transaction recorded with ID: ${transaction.id}`);
             return transaction;
@@ -178,11 +205,13 @@ class AdminOperations {
             snapshot.forEach(doc => {
                 const data = doc.data();
                 users.push({
-                    email: doc.id,
+                    id: doc.id,
+                    email: data.email,
                     name: data.name,
                     balance: data.balance || 0,
                     totalDeposits: data.totalDeposits || 0,
                     totalWithdrawals: data.totalWithdrawals || 0,
+                    provider: data.provider || 'N/A',
                     createdAt: data.createdAt
                 });
             });
@@ -202,17 +231,17 @@ const adminOps = new AdminOperations();
 
 // Example usage (uncomment to use):
 /*
-// Add $1000 to a user
-adminOps.addBalanceToUser('user@example.com', 1000);
+// Works with EMAIL:
+adminOps.addBalanceToUser('mjtamil392@gmail.com', 1000);
 
-// Set balance to specific amount
-adminOps.setUserBalance('user@example.com', 5000);
+// Or works with DOCUMENT ID:
+adminOps.addBalanceToUser('0SpGLFWCVMM4gvg3nk8n', 1000);
 
 // Update today's report
-adminOps.updateUserTodayReport('user@example.com', 250, 2.5);
+adminOps.updateUserTodayReport('mjtamil392@gmail.com', 250, 2.5);
 
 // Update holdings
-adminOps.updateUserHoldings('user@example.com', [
+adminOps.updateUserHoldings('mjtamil392@gmail.com', [
     {
         symbol: 'BTC',
         name: 'Bitcoin',
@@ -220,19 +249,11 @@ adminOps.updateUserHoldings('user@example.com', [
         value: 11000,
         allocation: 87,
         change24h: 2.1
-    },
-    {
-        symbol: 'ETH',
-        name: 'Ethereum',
-        balance: 0.5,
-        value: 1600,
-        allocation: 13,
-        change24h: -1.5
     }
 ]);
 
 // Get user data
-adminOps.getUserData('user@example.com');
+adminOps.getUserData('mjtamil392@gmail.com');
 
 // List all users
 adminOps.listAllUsers();

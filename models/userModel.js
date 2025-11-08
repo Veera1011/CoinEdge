@@ -1,3 +1,5 @@
+// models/userModel.js - FIXED for auto-generated document IDs
+
 const admin = require("firebase-admin");
 
 class UserModel {
@@ -8,7 +10,27 @@ class UserModel {
     this.transactionsCollection = "transactions";
   }
 
-  // ============ EXISTING METHODS ============
+  getDefaultUserData() {
+    return {
+      balance: 0,
+      totalDeposits: 0,
+      totalWithdrawals: 0,
+      totalTrades: 0,
+      todayPnL: 0,
+      todayGain: 0,
+      holdings: [],
+      isEmailVerified: false,
+      provider: 'email',
+      profilePicture: null,
+      firebaseUid: null,
+      resetToken: null,
+      resetTokenExpiry: null,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    };
+  }
+
+  // ============ USER MANAGEMENT ============
   
   async getUserByEmail(email) {
     try {
@@ -31,26 +53,33 @@ class UserModel {
 
   async createUser(userData) {
     try {
-      // Use email as document ID for uniqueness
       const email = userData.email.toLowerCase().trim();
-      const userRef = this.db.collection(this.collection).doc(email);
       
+      // Check if user already exists
+      const existingUser = await this.getUserByEmail(email);
+      if (existingUser) {
+        throw new Error('User already exists');
+      }
+      
+      // Merge provided data with defaults
+      const defaultData = this.getDefaultUserData();
       const newUserData = {
+        ...defaultData,
         ...userData,
-        balance: 0, // Initialize balance
-        totalDeposits: 0,
-        totalWithdrawals: 0,
-        totalTrades: 0,
-        todayPnL: 0,
-        todayGain: 0,
-        holdings: [], // Array of crypto holdings
+        email: email,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         updatedAt: admin.firestore.FieldValue.serverTimestamp()
       };
 
-      await userRef.set(newUserData);
-      return { id: email, ...newUserData };
+      // Create user with auto-generated ID
+      const docRef = await this.db.collection(this.collection).add(newUserData);
+      
+      console.log('✅ User created with ID:', docRef.id);
+      
+      // Return the created user data with ID
+      return { id: docRef.id, ...newUserData };
     } catch (error) {
+      console.error('Error in createUser:', error);
       throw new Error(`Failed to create user: ${error.message}`);
     }
   }
@@ -69,7 +98,40 @@ class UserModel {
     }
   }
 
-  // ============ NEW BALANCE & TRANSACTION METHODS ============
+  async ensureUserFields(userId) {
+    try {
+      const userRef = this.db.collection(this.collection).doc(userId);
+      const user = await userRef.get();
+
+      if (!user.exists) {
+        throw new Error('User not found');
+      }
+
+      const userData = user.data();
+      const defaultData = this.getDefaultUserData();
+      const updates = {};
+
+      // Check each required field and add if missing
+      Object.keys(defaultData).forEach(key => {
+        if (userData[key] === undefined) {
+          updates[key] = defaultData[key];
+        }
+      });
+
+      // Only update if there are missing fields
+      if (Object.keys(updates).length > 0) {
+        updates.updatedAt = admin.firestore.FieldValue.serverTimestamp();
+        await userRef.update(updates);
+        console.log(`Updated user ${userId} with missing fields:`, Object.keys(updates));
+      }
+
+      return { success: true, updated: Object.keys(updates) };
+    } catch (error) {
+      throw new Error(`Failed to ensure user fields: ${error.message}`);
+    }
+  }
+
+  // ============ BALANCE & TRANSACTION METHODS ============
 
   async updateUserBalance(userId, amount, type = 'add') {
     try {
@@ -95,6 +157,8 @@ class UserModel {
       };
 
       await userRef.update(updateData);
+      console.log(`✅ Balance updated for ${userId}: ${currentBalance} → ${newBalance}`);
+      
       return { success: true, newBalance };
     } catch (error) {
       throw new Error(`Failed to update balance: ${error.message}`);
@@ -105,7 +169,7 @@ class UserModel {
     try {
       const transaction = {
         userId: userId,
-        type: transactionData.type, // 'deposit', 'withdrawal', 'trade'
+        type: transactionData.type,
         amount: parseFloat(transactionData.amount),
         status: transactionData.status || 'completed',
         description: transactionData.description || '',
@@ -171,6 +235,7 @@ class UserModel {
         updatedAt: admin.firestore.FieldValue.serverTimestamp()
       });
 
+      console.log(`✅ Today's report updated for ${userId}: PnL=$${pnl}, Gain=${gain}%`);
       return { success: true };
     } catch (error) {
       throw new Error(`Failed to update today's report: ${error.message}`);
@@ -182,10 +247,11 @@ class UserModel {
       const userRef = this.db.collection(this.collection).doc(userId);
       
       await userRef.update({
-        holdings: holdings, // Array of {symbol, balance, value, allocation}
+        holdings: holdings,
         updatedAt: admin.firestore.FieldValue.serverTimestamp()
       });
 
+      console.log(`✅ Holdings updated for ${userId}: ${holdings.length} assets`);
       return { success: true };
     } catch (error) {
       throw new Error(`Failed to update holdings: ${error.message}`);
@@ -194,6 +260,9 @@ class UserModel {
 
   async getUserDashboardData(userId) {
     try {
+      // Ensure user has all required fields
+      await this.ensureUserFields(userId);
+      
       const user = await this.getUserById(userId);
       
       if (!user) {
@@ -215,7 +284,7 @@ class UserModel {
     }
   }
 
-  // ============ EXISTING PASSWORD/AUTH METHODS ============
+  // ============ PASSWORD/AUTH METHODS ============
 
   async updateUserResetToken(userId, resetToken, resetTokenExpiry) {
     try {
@@ -266,25 +335,12 @@ class UserModel {
     }
   }
 
-  async userContact({ name, email, message }) {
-    try {
-      const docRef = await this.db.collection(this.contactCollection).add({
-        name: name.trim(),
-        email: email.toLowerCase().trim(),
-        message: message.trim(),
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-      return { id: docRef.id, name, email, message };
-    } catch (error) {
-      throw new Error(`Failed to save contact message: ${error.message}`);
-    }
-  }
-
   async updateUserFirebaseUid(userId, firebaseUid) {
     try {
       await this.db.collection(this.collection).doc(userId).update({
         firebaseUid: firebaseUid,
         provider: 'google',
+        isEmailVerified: true,
         updatedAt: admin.firestore.FieldValue.serverTimestamp()
       });
       return { success: true };
@@ -309,6 +365,22 @@ class UserModel {
       return { id: doc.id, ...doc.data() };
     } catch (error) {
       throw new Error(`Failed to get user by Firebase UID: ${error.message}`);
+    }
+  }
+
+  // ============ CONTACT FORM ============
+
+  async userContact({ name, email, message }) {
+    try {
+      const docRef = await this.db.collection(this.contactCollection).add({
+        name: name.trim(),
+        email: email.toLowerCase().trim(),
+        message: message.trim(),
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return { id: docRef.id, name, email, message };
+    } catch (error) {
+      throw new Error(`Failed to save contact message: ${error.message}`);
     }
   }
 }

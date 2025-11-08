@@ -4,7 +4,7 @@ const userModel = require('../../models/userModel');
 const getDashboardData = async (req, res) => {
     try {
         // FIXED: Use req.user.id (which contains the email as document ID)
-        const userId = req.user.id;
+        const userId = req.user.docId;
         
         console.log('Getting dashboard data for user:', userId);
         console.log('Full req.user object:', req.user);

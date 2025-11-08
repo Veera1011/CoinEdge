@@ -1,3 +1,5 @@
+// controllers/auth/firebaseAuth.js - UPDATED with proper initialization
+
 const admin = require('firebase-admin');
 const UserModel = require('../../models/userModel');
 const { generateToken } = require('../../utils/jwt/jwt');
@@ -21,11 +23,15 @@ const verifyFirebaseToken = async (req, res) => {
         const name = decodedToken.name;
         const picture = decodedToken.picture;
 
+        console.log('Firebase auth successful for:', email);
+
         // Check if user exists in your database
         let user = await UserModel.getUserByEmail(email);
         
         if (!user) {
-            // Create new user if doesn't exist
+            console.log('Creating new user from Google auth:', email);
+            
+            // Create new user with ALL required fields
             const newUserData = {
                 firebaseUid: uid,
                 name: name,
@@ -33,16 +39,30 @@ const verifyFirebaseToken = async (req, res) => {
                 profilePicture: picture,
                 isEmailVerified: true,
                 provider: 'google',
-                createdAt: new Date()
+                password: null, // Google users don't have password
+                // Financial fields (from default)
+                balance: 0,
+                totalDeposits: 0,
+                totalWithdrawals: 0,
+                totalTrades: 0,
+                todayPnL: 0,
+                todayGain: 0,
+                holdings: []
             };
             
             user = await UserModel.createUser(newUserData);
+            console.log('✅ New Google user created:', user.id);
         } else {
+            console.log('Existing user found:', email);
+            
             // Update existing user with Firebase UID if not set
             if (!user.firebaseUid) {
                 await UserModel.updateUserFirebaseUid(user.id, uid);
                 user.firebaseUid = uid;
             }
+            
+            // Ensure user has all required fields (for existing users)
+            await UserModel.ensureUserFields(user.id);
         }
 
         // Generate JWT token for your application
@@ -60,7 +80,7 @@ const verifyFirebaseToken = async (req, res) => {
                 id: user.id,
                 email: user.email,
                 name: user.name,
-                profilePicture: user.profilePicture,
+                profilePicture: user.profilePicture || picture,
                 token: token,
                 expiresIn: '1h'
             }

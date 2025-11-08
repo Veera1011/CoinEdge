@@ -1,4 +1,5 @@
-<%- include('layout', { body: ` <div class="dashboard-container">
+<%- include('layout', { body: ` 
+<div class="dashboard-container">
     <!-- Section 1: Today Report Card -->
     <div class="today-report-section">
         <div class="today-report-card">
@@ -13,7 +14,7 @@
                             <div class="sub-card-header">
                                 <h6>Account Balance</h6>
                             </div>
-                            <div class="sub-card-value">$0</div>
+                            <div class="sub-card-value" data-balance="account">$0.00</div>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -21,7 +22,7 @@
                             <div class="sub-card-header">
                                 <h6>Today's PNL</h6>
                             </div>
-                            <div class="sub-card-value positive">$0</div>
+                            <div class="sub-card-value positive" data-balance="pnl">$0.00</div>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -29,7 +30,7 @@
                             <div class="sub-card-header">
                                 <h6>Today's Gain</h6>
                             </div>
-                            <div class="sub-card-value positive">$0</div>
+                            <div class="sub-card-value positive" data-balance="gain">+0.00%</div>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -37,7 +38,7 @@
                             <div class="sub-card-header">
                                 <h6>Balance Report</h6>
                             </div>
-                            <div class="sub-card-value">$0</div>
+                            <div class="sub-card-value" data-balance="report">$0.00</div>
                         </div>
                     </div>
                 </div>
@@ -97,27 +98,23 @@
             </table>
         </div>
     </div>
-    </div>
-    ` }) %>
+</div>
+` }) %>
 
+<script>
+    // Get today's date
+    const today = new Date();
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    const formattedDate = today.toLocaleDateString('en-US', options);
 
-    <script>
-        // Get today's date
-        const today = new Date();
-        const options = { day: '2-digit', month: 'short', year: 'numeric' };
-        const formattedDate = today.toLocaleDateString('en-US', options);
+    // Update the span by ID
+    const dateSpan = document.getElementById('todayDate');
+    if (dateSpan) {
+        dateSpan.textContent = formattedDate;
+    }
 
-        // Update the span by ID
-        const dateSpan = document.getElementById('todayDate');
-        if (dateSpan) {
-            dateSpan.textContent = formattedDate;
-        }
-
-
-        // Navigation function
-        function navigateTo(path) {
-            window.location.href = path;
-        }
-
-
-    </script>
+    // Navigation function
+    function navigateTo(path) {
+        window.location.href = path;
+    }
+</script>

@@ -1,3 +1,5 @@
+// controllers/register/userRegistration.js - UPDATED with proper initialization
+
 const userModel = require('../../models/userModel');
 const { sendWelcomeEmail } = require('../../utils/emailService');
 
@@ -30,11 +32,23 @@ const userRegistration = async (req, res) => {
             });
         }
         
-        // Prepare user data
+        // Prepare complete user data with ALL required fields
         const userData = { 
-            name: username, // Map username to name
-            email: email.toLowerCase().trim(), // Normalize email
-            password: password 
+            name: username,
+            email: email.toLowerCase().trim(),
+            password: password,
+            provider: 'email',
+            isEmailVerified: false,
+            profilePicture: null,
+            firebaseUid: null,
+            // Financial fields
+            balance: 0,
+            totalDeposits: 0,
+            totalWithdrawals: 0,
+            totalTrades: 0,
+            todayPnL: 0,
+            todayGain: 0,
+            holdings: []
         };
         
         // First, try to send the welcome email
@@ -62,11 +76,22 @@ const userRegistration = async (req, res) => {
         // Only save to database if email was sent successfully
         const newUser = await userModel.createUser(userData);
         
+        console.log('✅ User registered successfully:', {
+            id: newUser.id,
+            email: newUser.email,
+            balance: newUser.balance,
+            holdings: newUser.holdings
+        });
+        
         // Send success response
         res.status(201).json({
             success: true,
             message: 'User registered successfully and welcome email sent',
-            data: newUser,
+            data: {
+                id: newUser.id,
+                email: newUser.email,
+                name: newUser.name
+            },
             emailSent: true
         });
         

@@ -2,6 +2,12 @@ const express = require('express');
 const authMiddleware = require('../middleware/authMiddleware');
 const cryptoController = require('../controllers/crypto/cryptoController');
 const { createWithdrawal, getWithdrawalHistory, updateWithdrawalStatus, getUserBalance } = require('../controllers/withdraw/withdrawController');
+const { 
+    getDashboardData, 
+    getUserProfile, 
+    getUserTransactions 
+} = require('../controllers/dashboard/dashboardController');
+
 const router = express.Router();
 
 // settings , market , portfolio , trading , dashboard
@@ -68,7 +74,17 @@ router.get('/balance/:userId',getUserBalance);
 
 // Update withdrawal status (admin route - you might want to add admin middleware)
 router.put('/update/:withdrawalId', updateWithdrawalStatus);
+// Add these routes to routes/userpage.js
 
+
+
+// API Routes with authentication middleware
+router.get('/api/dashboard-data', getDashboardData);
+router.get('/api/profile', getUserProfile);
+router.get('/api/transactions', getUserTransactions);
+router.get('/api/withdraw/balance', getUserBalance);
+router.get('/api/withdraw/history', getWithdrawalHistory);
+router.post('/api/withdraw/create', createWithdrawal);
 
 module.exports = router;
 
