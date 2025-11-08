@@ -118,7 +118,7 @@ async function signInWithGoogle() {
     }
 }
 
-// Sign Out
+// Sign 
 async function signOutUser() {
     try {
         if (auth) {

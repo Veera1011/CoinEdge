@@ -7,8 +7,11 @@ const DEPOSITS_COLLECTION = 'deposits';
 // Record deposit (called when deposit is confirmed)
 const recordDeposit = async (req, res) => {
     try {
-        const userId = req.user.email;
+        // FIX: Use req.user.id instead of req.user.email
+        const userId = req.user.id; // This is the email (document ID)
         const { amount, crypto, txHash, walletAddress } = req.body;
+        
+        console.log('Recording deposit for user:', userId);
         
         if (!amount || !crypto) {
             return res.status(400).json({
@@ -51,6 +54,8 @@ const recordDeposit = async (req, res) => {
             walletAddress: walletAddress
         });
 
+        console.log('✅ Deposit recorded successfully:', docRef.id);
+
         return res.status(201).json({
             success: true,
             message: 'Deposit recorded successfully',
@@ -74,7 +79,10 @@ const recordDeposit = async (req, res) => {
 // Get deposit history
 const getDepositHistory = async (req, res) => {
     try {
-        const userId = req.user.email;
+        // FIX: Use req.user.id instead of req.user.email
+        const userId = req.user.id;
+
+        console.log('Getting deposit history for user:', userId);
 
         const depositsQuery = await db.collection(DEPOSITS_COLLECTION)
             .where('userId', '==', userId)

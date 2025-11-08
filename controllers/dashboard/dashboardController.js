@@ -3,7 +3,11 @@ const userModel = require('../../models/userModel');
 // Get user dashboard data
 const getDashboardData = async (req, res) => {
     try {
-        const userId = req.user.email; // From JWT middleware
+        // FIXED: Use req.user.id (which contains the email as document ID)
+        const userId = req.user.id;
+        
+        console.log('Getting dashboard data for user:', userId);
+        console.log('Full req.user object:', req.user);
         
         const dashboardData = await userModel.getUserDashboardData(userId);
         
@@ -24,7 +28,10 @@ const getDashboardData = async (req, res) => {
 // Get user profile
 const getUserProfile = async (req, res) => {
     try {
-        const userId = req.user.email;
+        // FIXED: Use req.user.id
+        const userId = req.user.id;
+        
+        console.log('Getting profile for user:', userId);
         
         const user = await userModel.getUserById(userId);
         
@@ -55,8 +62,11 @@ const getUserProfile = async (req, res) => {
 // Get user transactions
 const getUserTransactions = async (req, res) => {
     try {
-        const userId = req.user.email;
+        // FIXED: Use req.user.id
+        const userId = req.user.id;
         const limit = parseInt(req.query.limit) || 50;
+        
+        console.log('Getting transactions for user:', userId);
         
         const transactions = await userModel.getUserTransactions(userId, limit);
         
@@ -75,10 +85,11 @@ const getUserTransactions = async (req, res) => {
     }
 };
 
-// Update today's PnL (can be called from trading operations)
+// Update today's PnL
 const updateTodayReport = async (req, res) => {
     try {
-        const userId = req.user.email;
+        // FIXED: Use req.user.id
+        const userId = req.user.id;
         const { pnl, gain } = req.body;
 
         if (pnl === undefined || gain === undefined) {
@@ -104,10 +115,11 @@ const updateTodayReport = async (req, res) => {
     }
 };
 
-// Update user holdings (called when portfolio changes)
+// Update user holdings
 const updateHoldings = async (req, res) => {
     try {
-        const userId = req.user.email;
+        // FIXED: Use req.user.id
+        const userId = req.user.id;
         const { holdings } = req.body;
 
         if (!Array.isArray(holdings)) {

@@ -1,28 +1,27 @@
 <%- include('layout', { body: `
-<div class="withdraw-container">
-    <!-- Balance Card -->
-    <div class="balance-card">
-        <h1 class="card-title">Withdraw Funds</h1>
-        <div class="balance-info">
-            <span class="balance-label">Your balance:</span>
-            <span class="balance-amount" id="userBalance">$0.00</span>
-        </div>
-    </div>
-
-    <!-- Message Display Card -->
-    <div class="message-card" id="messageCard" style="display: none;">
-        <div class="message-content" id="messageContent">
-            <i class="message-icon" id="messageIcon"></i>
-            <div class="message-text">
-                <h3 class="message-title" id="messageTitle"></h3>
-                <p class="message-description" id="messageDescription"></p>
+    <div class="withdraw-container">
+        <!-- Balance Card -->
+        <div class="balance-card">
+            <h1 class="card-title">Withdraw Funds</h1>
+            <div class="balance-info">
+                <span class="balance-label">Your balance:</span>
+                <span class="balance-amount" id="userBalance">$0.00</span>
             </div>
         </div>
-    </div>
 
-    <!-- Withdraw Form Card -->
-    <div class="withdraw-form-card">
-        <form id="withdrawForm">
+        <!-- Message Display Card -->
+        <div class="message-card" id="messageCard" style="display: none;">
+            <div class="message-content" id="messageContent">
+                <i class="message-icon" id="messageIcon"></i>
+                <div class="message-text">
+                    <h3 class="message-title" id="messageTitle"></h3>
+                    <p class="message-description" id="messageDescription"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdraw Form Card -->
+        <div class="withdraw-form-card">
             <div class="form-group">
                 <label for="amount" class="input-label">Enter Amount (USDT)</label>
                 <input 
@@ -44,189 +43,27 @@
                     id="walletAddress" 
                     name="walletAddress" 
                     class="input-field" 
-                    placeholder="0x..."
-                    pattern="0x[a-fA-F0-9]{40}"
+                    placeholder="Enter USDT (ERC20) Wallet Address"
                     required
                 >
-                <small class="input-help">Must be a valid ERC20 wallet address</small>
             </div>
 
             <div class="button-container">
-                <button type="submit" class="withdraw-button" id="withdrawBtn">
+                <button type="button" class="withdraw-button" id="withdrawBtn">
                     Withdraw
                 </button>
             </div>
-        </form>
-    </div>
+        </div>
 
-    <!-- History Card -->
-    <div class="history-card">
-        <h2 class="card-title">Withdrawal History</h2>
-        <div class="history-content" id="withdrawalHistory">
-            <div class="no-history">
-                <i class="fas fa-history"></i>
-                <p>No withdrawal history available</p>
+        <!-- History Card -->
+        <div class="history-card">
+            <h2 class="card-title">Withdrawal History</h2>
+            <div class="history-content" id="withdrawalHistory">
+                <div class="no-history">
+                    <i class="fas fa-history"></i>
+                    <p>No withdrawal history available</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<style>
-.history-item {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
-}
-
-.history-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.history-amount {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-}
-
-.history-status {
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.status-pending {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status-processing {
-    background: #cfe2ff;
-    color: #084298;
-}
-
-.status-completed {
-    background: #d1e7dd;
-    color: #0f5132;
-}
-
-.status-failed,
-.status-cancelled {
-    background: #f8d7da;
-    color: #842029;
-}
-
-.history-details {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #666;
-}
-
-.history-address {
-    font-family: monospace;
-    font-size: 12px;
-}
-
-.history-tx {
-    margin-top: 8px;
-    font-size: 12px;
-    color: #666;
-    font-family: monospace;
-}
-
-.input-help {
-    display: block;
-    margin-top: 5px;
-    font-size: 12px;
-    color: #666;
-}
-</style>
-
-<script src="/js/user-data.js"></script>
-<script>
-document.getElementById('withdrawForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const amount = document.getElementById('amount').value;
-    const walletAddress = document.getElementById('walletAddress').value;
-    const submitBtn = document.getElementById('withdrawBtn');
-    
-    // Disable button
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Processing...';
-    
-    try {
-        const response = await window.UserData.fetchWithAuth('/user/api/withdraw/create', {
-            method: 'POST',
-            body: JSON.stringify({ amount, walletAddress })
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            // Show success message
-            Swal.fire({
-                icon: 'success',
-                title: 'Withdrawal Submitted',
-                text: 'Your withdrawal request has been submitted successfully!',
-                confirmButtonColor: '#4da6ff'
-            });
-            
-            // Reset form
-            document.getElementById('withdrawForm').reset();
-            
-            // Reload data
-            const balance = await window.UserData.fetchUserBalance();
-            const history = await window.UserData.fetchWithdrawalHistory();
-            updateWithdrawalDisplay(balance, history);
-        } else {
-            throw new Error(result.error || 'Withdrawal failed');
-        }
-    } catch (error) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Withdrawal Failed',
-            text: error.message || 'An error occurred. Please try again.',
-            confirmButtonColor: '#dc3545'
-        });
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Withdraw';
-    }
-});
-
-function updateWithdrawalDisplay(balance, history) {
-    // Update balance
-    const balanceElement = document.getElementById('userBalance');
-    if (balanceElement) {
-        balanceElement.textContent = `$${balance.toFixed(2)}`;
-    }
-
-    // Update history
-    const historyContainer = document.getElementById('withdrawalHistory');
-    if (historyContainer && history.length > 0) {
-        const historyHTML = history.map(withdrawal => `
-            <div class="history-item">
-                <div class="history-header">
-                    <span class="history-amount">$${withdrawal.amount.toFixed(2)}</span>
-                    <span class="history-status status-${withdrawal.status}">${withdrawal.status}</span>
-                </div>
-                <div class="history-details">
-                    <div class="history-address">${withdrawal.walletAddress.substring(0, 15)}...${withdrawal.walletAddress.substring(35)}</div>
-                    <div class="history-date">${new Date(withdrawal.createdAt).toLocaleString()}</div>
-                </div>
-                ${withdrawal.transactionId ? `<div class="history-tx">TX: ${withdrawal.transactionId}</div>` : ''}
-            </div>
-        `).join('');
-
-        historyContainer.innerHTML = historyHTML;
-    }
-}
-</script>
 ` }) %>

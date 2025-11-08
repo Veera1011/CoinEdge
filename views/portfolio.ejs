@@ -1,234 +1,226 @@
-<%- include('layout', { body: `
-<div class="dashboard-container">
-    <!-- Section 1: Today Report Card -->
-    <div class="today-report-section">
-        <div class="today-report-card">
-            <div class="report-header">
-                <h4 class="report-title">Today Report</h4>
-                <span class="report-date" id="todayDate"></span>
-            </div>
-            <div class="report-content">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="sub-card">
-                            <div class="sub-card-header">
-                                <h6>Account Balance</h6>
-                            </div>
-                            <div class="sub-card-value" data-user-balance>$0.00</div>
-                        </div>
+    <%- include('layout', { body: `
+        <div class="dashboard-container">
+            <!-- Section 1: Today Report Card -->
+            <div class="today-report-section">
+                <div class="today-report-card">
+                    <div class="report-header">
+                        <h4 class="report-title">Today Report</h4>
+                        <span class="report-date" id="todayDate">5-Oct-2025</span>
                     </div>
-                    <div class="col-md-3">
-                        <div class="sub-card">
-                            <div class="sub-card-header">
-                                <h6>Today's PNL</h6>
+                    <div class="report-content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="sub-card">
+                                    <div class="sub-card-header">
+                                        <h6>Account Balance</h6>
+                                    </div>
+                                    <div class="sub-card-value">$12,450.00</div>
+                                </div>
                             </div>
-                            <div class="sub-card-value" data-today-pnl>$0.00</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="sub-card">
-                            <div class="sub-card-header">
-                                <h6>Today's Gain</h6>
+                            <div class="col-md-3">
+                                <div class="sub-card">
+                                    <div class="sub-card-header">
+                                        <h6>Today's PNL</h6>
+                                    </div>
+                                    <div class="sub-card-value positive">+$245.50</div>
+                                </div>
                             </div>
-                            <div class="sub-card-value" data-today-gain>0.0%</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="sub-card">
-                            <div class="sub-card-header">
-                                <h6>Balance Report</h6>
+                            <div class="col-md-3">
+                                <div class="sub-card">
+                                    <div class="sub-card-header">
+                                        <h6>Today's Gain</h6>
+                                    </div>
+                                    <div class="sub-card-value positive">+2.1%</div>
+                                </div>
                             </div>
-                            <div class="sub-card-value" data-balance-report>$0.00</div>
+                            <div class="col-md-3">
+                                <div class="sub-card">
+                                    <div class="sub-card-header">
+                                        <h6>Balance Report</h6>
+                                    </div>
+                                    <div class="sub-card-value">$12,695.50</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Section 2: Action Buttons -->
-    <div class="action-section">
-        <div class="row">
-            <div class="col-md-4">
-                <button class="action-btn transfer" onclick="navigateTo('/user/transfer')">
-                    <i class="fas fa-exchange-alt"></i>
-                    <span>Transfer</span>
-                </button>
-            </div>
-            <div class="col-md-4">
-                <button class="action-btn deposit" onclick="navigateTo('/user/deposit')">
-                    <i class="fas fa-plus-circle"></i>
-                    <span>Deposit</span>
-                </button>
-            </div>
-            <div class="col-md-4">
-                <button class="action-btn withdraw" onclick="navigateTo('/user/withdraw')">
-                    <i class="fas fa-minus-circle"></i>
-                    <span>Withdraw</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Section 3: Portfolio Holdings -->
-    <div class="portfolio-section">
-        <div class="portfolio-container">
-            <h4 class="portfolio-heading">My Portfolio</h4>
-            <div class="portfolio-summary">
+            <!-- Section 2: Action Buttons -->
+            <div class="action-section">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="summary-card">
-                            <div class="summary-icon">
-                                <i class="fas fa-wallet"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h6>Total Value</h6>
-                                <span class="summary-value" data-balance-report>$0.00</span>
-                            </div>
-                        </div>
+                        <button class="action-btn transfer">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Transfer</span>
+                        </button>
                     </div>
                     <div class="col-md-4">
-                        <div class="summary-card">
-                            <div class="summary-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h6>24h Change</h6>
-                                <span class="summary-value" id="portfolio-change">$0.00 (0.0%)</span>
-                            </div>
-                        </div>
+                        <button class="action-btn deposit">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Deposit</span>
+                        </button>
                     </div>
                     <div class="col-md-4">
-                        <div class="summary-card">
-                            <div class="summary-icon">
-                                <i class="fas fa-coins"></i>
-                            </div>
-                            <div class="summary-content">
-                                <h6>Holdings</h6>
-                                <span class="summary-value" id="holdings-count">0 Assets</span>
-                            </div>
-                        </div>
+                        <button class="action-btn withdraw">
+                            <i class="fas fa-minus-circle"></i>
+                            <span>Withdraw</span>
+                        </button>
                     </div>
                 </div>
             </div>
-            
-            <div class="holdings-table-container">
-                <h5 class="holdings-title">Holdings</h5>
-                <div id="holdings-table-wrapper">
-                    <div class="no-holdings" style="text-align: center; padding: 40px;">
-                        <i class="fas fa-wallet" style="font-size: 48px; color: #ccc; margin-bottom: 20px;"></i>
-                        <p style="color: #666;">No holdings yet. Start trading to build your portfolio!</p>
+
+            <!-- Section 3: Portfolio Holdings -->
+            <div class="portfolio-section">
+                <div class="portfolio-container">
+                    <h4 class="portfolio-heading">My Portfolio</h4>
+                    <div class="portfolio-summary">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="fas fa-wallet"></i>
+                                    </div>
+                                    <div class="summary-content">
+                                        <h6>Total Value</h6>
+                                        <span class="summary-value">$12,695.50</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="summary-content">
+                                        <h6>24h Change</h6>
+                                        <span class="summary-value positive">+$245.50 (+2.1%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="fas fa-coins"></i>
+                                    </div>
+                                    <div class="summary-content">
+                                        <h6>Holdings</h6>
+                                        <span class="summary-value">8 Assets</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="/js/user-data.js"></script>
-<script>
-    // Get today's date
-    const today = new Date();
-    const options = { day: '2-digit', month: 'short', year: 'numeric' };
-    const formattedDate = today.toLocaleDateString('en-US', options);
-    
-    const dateSpan = document.getElementById('todayDate');
-    if (dateSpan) {
-        dateSpan.textContent = formattedDate;
-    }
-
-    function navigateTo(path) {
-        window.location.href = path;
-    }
-
-    // Load and display holdings
-    async function loadHoldings() {
-        const dashboardData = await window.UserData.fetchDashboardData();
-        
-        if (dashboardData && dashboardData.holdings && dashboardData.holdings.length > 0) {
-            const holdings = dashboardData.holdings;
-            
-            // Update holdings count
-            document.getElementById('holdings-count').textContent = `${holdings.length} Asset${holdings.length !== 1 ? 's' : ''}`;
-            
-            // Update 24h change
-            const pnl = dashboardData.todayPnL;
-            const gain = dashboardData.todayGain;
-            const changeEl = document.getElementById('portfolio-change');
-            changeEl.textContent = `${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)} (${gain >= 0 ? '+' : ''}${gain.toFixed(2)}%)`;
-            changeEl.className = pnl >= 0 ? 'summary-value positive' : 'summary-value negative';
-            
-            // Build holdings table
-            const tableHTML = `
-                <table class="holdings-table">
-                    <thead>
-                        <tr>
-                            <th>Asset</th>
-                            <th>Balance</th>
-                            <th>Value</th>
-                            <th>24h Change</th>
-                            <th>Allocation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${holdings.map(holding => {
-                            const change24h = holding.change24h || 0;
-                            const changeValue = holding.value * (change24h / 100);
-                            
-                            return `
+                    
+                    <div class="holdings-table-container">
+                        <h5 class="holdings-title">Holdings</h5>
+                        <table class="holdings-table">
+                            <thead>
+                                <tr>
+                                    <th>Asset</th>
+                                    <th>Balance</th>
+                                    <th>Value</th>
+                                    <th>24h Change</th>
+                                    <th>Allocation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <tr>
                                     <td class="asset-cell">
                                         <div class="asset-info">
-                                            <div class="asset-icon ${holding.symbol.toLowerCase()}-icon">
-                                                ${getAssetIcon(holding.symbol)}
-                                            </div>
+                                            <div class="asset-icon btc-icon">₿</div>
                                             <div class="asset-details">
-                                                <span class="asset-symbol">${holding.symbol}</span>
-                                                <span class="asset-name">${holding.name || holding.symbol}</span>
+                                                <span class="asset-symbol">BTC</span>
+                                                <span class="asset-name">Bitcoin</span>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="balance-cell">${holding.balance} ${holding.symbol}</td>
-                                    <td class="value-cell">$${holding.value.toFixed(2)}</td>
-                                    <td class="change-cell ${change24h >= 0 ? 'positive' : 'negative'}">
-                                        <i class="fas fa-arrow-${change24h >= 0 ? 'up' : 'down'}"></i>
-                                        <span>${change24h >= 0 ? '+' : ''}$${Math.abs(changeValue).toFixed(2)} (${change24h >= 0 ? '+' : ''}${change24h.toFixed(2)}%)</span>
+                                    <td class="balance-cell">0.245 BTC</td>
+                                    <td class="value-cell">$11,081.25</td>
+                                    <td class="change-cell positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+$245.50 (+2.1%)</span>
                                     </td>
                                     <td class="allocation-cell">
                                         <div class="allocation-bar">
-                                            <div class="allocation-fill" style="width: ${holding.allocation}%"></div>
+                                            <div class="allocation-fill" style="width: 87%"></div>
                                         </div>
-                                        <span class="allocation-text">${holding.allocation}%</span>
+                                        <span class="allocation-text">87%</span>
                                     </td>
                                 </tr>
-                            `;
-                        }).join('')}
-                    </tbody>
-                </table>
-            `;
-            
-            document.getElementById('holdings-table-wrapper').innerHTML = tableHTML;
-        }
-    }
-
-    function getAssetIcon(symbol) {
-        const icons = {
-            'BTC': '₿',
-            'ETH': 'Ξ',
-            'SOL': '◎',
-            'BNB': 'B',
-            'USDT': '₮',
-            'USDC': '$',
-            'XRP': 'X',
-            'ADA': 'A',
-            'DOGE': 'Ð'
-        };
-        return icons[symbol] || symbol.charAt(0);
-    }
-
-    // Load holdings on page load
-    if (window.UserData.isAuthenticated()) {
-        loadHoldings();
-    }
-</script>
-` }) %>
+                                <tr>
+                                    <td class="asset-cell">
+                                        <div class="asset-info">
+                                            <div class="asset-icon eth-icon">Ξ</div>
+                                            <div class="asset-details">
+                                                <span class="asset-symbol">ETH</span>
+                                                <span class="asset-name">Ethereum</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="balance-cell">0.5 ETH</td>
+                                    <td class="value-cell">$1,622.84</td>
+                                    <td class="change-cell negative">
+                                        <i class="fas fa-arrow-down"></i>
+                                        <span>-$45.23 (-2.7%)</span>
+                                    </td>
+                                    <td class="allocation-cell">
+                                        <div class="allocation-bar">
+                                            <div class="allocation-fill" style="width: 13%"></div>
+                                        </div>
+                                        <span class="allocation-text">13%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="asset-cell">
+                                        <div class="asset-info">
+                                            <div class="asset-icon sol-icon">◎</div>
+                                            <div class="asset-details">
+                                                <span class="asset-symbol">SOL</span>
+                                                <span class="asset-name">Solana</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="balance-cell">5.2 SOL</td>
+                                    <td class="value-cell">$512.34</td>
+                                    <td class="change-cell positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+$28.45 (+5.9%)</span>
+                                    </td>
+                                    <td class="allocation-cell">
+                                        <div class="allocation-bar">
+                                            <div class="allocation-fill" style="width: 4%"></div>
+                                        </div>
+                                        <span class="allocation-text">4%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="asset-cell">
+                                        <div class="asset-info">
+                                            <div class="asset-icon bnb-icon">B</div>
+                                            <div class="asset-details">
+                                                <span class="asset-symbol">BNB</span>
+                                                <span class="asset-name">Binance Coin</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="balance-cell">2.1 BNB</td>
+                                    <td class="value-cell">$656.07</td>
+                                    <td class="change-cell positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+$12.34 (+1.9%)</span>
+                                    </td>
+                                    <td class="allocation-cell">
+                                        <div class="allocation-bar">
+                                            <div class="allocation-fill" style="width: 5%"></div>
+                                        </div>
+                                        <span class="allocation-text">5%</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ` }) %>

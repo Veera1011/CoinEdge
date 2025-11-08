@@ -7,8 +7,11 @@ const WITHDRAWALS_COLLECTION = 'withdrawals';
 // Create withdrawal request
 const createWithdrawal = async (req, res) => {
     try {
-        const userId = req.user.email; // From JWT middleware
+        // FIX: Use req.user.id instead of req.user.email
+        const userId = req.user.id; // This is the email (document ID)
         const { amount, walletAddress } = req.body;
+        
+        console.log('Creating withdrawal for user:', userId);
         
         if (!amount || !walletAddress) {
             return res.status(400).json({
@@ -102,7 +105,10 @@ const createWithdrawal = async (req, res) => {
 // Get user's withdrawal history
 const getWithdrawalHistory = async (req, res) => {
     try {
-        const userId = req.user.email;
+        // FIX: Use req.user.id instead of req.user.email
+        const userId = req.user.id;
+
+        console.log('Getting withdrawal history for user:', userId);
 
         const withdrawalsQuery = await db.collection(WITHDRAWALS_COLLECTION)
             .where('userId', '==', userId)
@@ -212,7 +218,10 @@ const updateWithdrawalStatus = async (req, res) => {
 // Get user balance
 const getUserBalance = async (req, res) => {
     try {
-        const userId = req.user.email;
+        // FIX: Use req.user.id instead of req.user.email
+        const userId = req.user.id;
+
+        console.log('Getting balance for user:', userId);
 
         const user = await userModel.getUserById(userId);
         
