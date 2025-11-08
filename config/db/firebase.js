@@ -1,7 +1,7 @@
 const admin = require('firebase-admin');
 const path = require('path');
 const { rootMainFile } = require('../../utils/path');
-const serviceAccount = require(path.join(rootMainFile, 'config/fireBaseConfig/testcoin-ServiceKey.json'));
+const serviceAccount = require(path.join(rootMainFile, 'config/fireBaseConfig/j.json'));
 
 try {
     admin.initializeApp({

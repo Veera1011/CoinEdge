@@ -1,779 +1,303 @@
+/* ================================
+   🌐 Global Styles & Variables
+================================= */
+
+:root {
+  --color-primary: #3b82f6;
+  --color-primary-light: #60a5fa;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --color-bg: #f7f7f7;
+  --color-text: #333;
+  --color-muted: #666;
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+
+  --transition-base: all 0.3s ease;
+}
+
+/* ================================
+   🧱 Dashboard Layout
+================================= */
+
 .dashboard-container {
-  padding: 20px;
+  padding: var(--space-md);
   max-width: 1200px;
-  margin: 80px auto;
+  margin: clamp(3rem, 8vw, 5rem) auto;
 }
 
-/* Section 3: Trading Table */
+/* ================================
+   📊 Today Report Section
+================================= */
 
-.marketdata-container {
-  margin: 100px;
-}
-
-.trading-section {
-  margin-bottom: 30px;
-}
-
-.table-container {
-  background: rgb(247, 247, 247);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  margin: 20px auto; /* Changed from 100px 100px */
-  width: 100%; /* Add this */
-  overflow-x: auto; /* Add this */
-  max-width: 100%; /* Add this */
-}
-
-.table-heading {
-  margin: 0 0 20px 0;
-  color: #333;
-  font-weight: 700;
-  font-size: 20px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #e9ecef;
-}
-
-.trading-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.trading-table thead {
-  background: #60a5fa;
-  color: white;
-}
-
-.trading-table th {
-  padding: 15px 20px;
-  font-weight: 600;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.trading-table tbody tr {
-  border-bottom: 1px solid #f1f3f4;
-  transition: background-color 0.3s ease;
-}
-
-.trading-table tbody tr:hover {
-  background-color: #f8f9fa;
-}
-
-.trading-table tbody tr:last-child {
-  border-bottom: none;
-}
-
-.trading-table td {
-  padding: 15px 20px;
-  vertical-align: middle;
-  text-align: left;
-}
-
-.coin-cell {
-  width: 25%;
-}
-
-.coin-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.coin-symbol {
-  font-weight: 700;
-  font-size: 16px;
-  color: #333;
-}
-
-.coin-name {
-  font-size: 12px;
-  color: #666;
-  font-weight: 500;
-}
-
-.price-cell {
-  width: 25%;
-  font-weight: 600;
-  font-size: 16px;
-  color: #333;
-}
-
-.change-cell {
-  width: 25%;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.change-cell.positive {
-  color: #10b981;
-}
-
-.change-cell.negative {
-  color: #ef4444;
-}
-
-.chart-cell {
-  width: 25%;
-  padding: 10px 15px;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.change-cell i {
-  font-size: 12px;
-  margin-right: 5px;
-}
-
-.mini-chart {
-  width: 100%;
-  height: 40px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #e9ecef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chart-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Section 1: Today Report Card */
 .today-report-section {
-  margin-bottom: 30px;
+  margin-bottom: var(--space-lg);
 }
 
 .today-report-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-lg);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
 }
 
 .report-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-  padding-bottom: 15px;
   border-bottom: 2px solid #e9ecef;
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+  flex-wrap: wrap;
 }
 
 .report-title {
-  margin: 0;
-  color: #333;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 700;
+  color: var(--color-text);
 }
 
 .report-date {
-  background: #60a5fa;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
+  background: var(--color-primary-light);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
-/* === Arrange Today Report Cards Horizontally === */
-.today-report-card .report-content .row {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 20px;
-  flex-wrap: nowrap;
+/* Report Content Grid */
+.report-content .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
 }
 
-.today-report-card .report-content .col-md-3 {
-  flex: 1;
-  max-width: 100%;
-}
-
-.today-report-card .sub-card {
-  flex: 1;
-  height: 100%;
-  margin-bottom: 0;
-}
-
-/* Responsive wrapping on smaller screens */
-@media (max-width: 991px) {
-  .today-report-card .report-content .row {
-    flex-wrap: wrap;
-  }
-  .today-report-card .report-content .col-md-3 {
-    flex: 1 1 calc(50% - 10px);
-  }
-  .table-container {
-    margin: 15px auto;
-  }
-}
-
-@media (max-width: 576px) {
-  .today-report-card .report-content .col-md-3 {
-    flex: 1 1 100%;
-  }
-}
-
-/* Sub Cards */
 .sub-card {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-  border-radius: 12px;
-  padding: 24px 20px;
-  color: white;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  color: #fff;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: var(--transition-base);
   position: relative;
   overflow: hidden;
 }
 
 .sub-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.sub-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  pointer-events: none;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 .sub-card-header h6 {
-  margin: 0 0 10px 0;
+  margin-bottom: var(--space-xs);
   font-weight: 600;
   opacity: 0.9;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .sub-card-value {
-  font-size: 20px;
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
   font-weight: 700;
 }
 
-/* Section 2: Action Buttons */
+/* ================================
+   ⚙️ Action Buttons
+================================= */
+
 .action-section {
-  margin-bottom: 30px;
+  margin-bottom: var(--space-lg);
 }
 
-/* === Arrange Action Buttons Horizontally === */
 .action-section .row {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 20px;
-  flex-wrap: nowrap;
-}
-
-.action-section .col-md-4 {
-  flex: 1;
-  max-width: 100%;
-}
-
-/* Responsive wrapping for smaller screens */
-@media (max-width: 991px) {
-  .action-section .row {
-    flex-wrap: wrap;
-  }
-  .action-section .col-md-4 {
-    flex: 1 1 calc(50% - 10px);
-  }
-}
-
-@media (max-width: 576px) {
-  .action-section .col-md-4 {
-    flex: 1 1 100%;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
 }
 
 .action-btn {
-  width: 100%;
-  padding: 20px;
+  padding: var(--space-md);
   border: none;
-  border-radius: 12px;
-  font-size: 16px;
+  border-radius: var(--radius-md);
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-base);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-}
-
-.action-btn.transfer {
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-  color: #333;
-}
-
-.action-btn.deposit {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  color: #333;
-}
-
-.action-btn.withdraw {
-  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-  color: #333;
+  gap: var(--space-xs);
 }
 
 .action-btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-
-/* Large Desktop (1200px and up) */
-@media (min-width: 1200px) {
-  .dashboard-container {
-    max-width: 1400px;
-    padding: 30px;
-  }
-
-  .today-report-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .table-container {
-    padding: 20px;
-  }
-
-
-
-  .sub-card {
-    padding: 25px;
-  }
-
-  .action-btn {
-    padding: 25px;
-    font-size: 18px;
-  }
-
-  .chart-cell {
-    padding: 5px 5px;
-  }
-
-  .mini-chart {
-    height: 40px;
-    width: 70%;
-  }
+.action-btn.transfer {
+  background: linear-gradient(135deg, #ff9a9e, #fecfef);
 }
 
-/* Desktop (992px to 1199px) */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .dashboard-container {
-    max-width: 1000px;
-    padding: 25px;
-  }
-
-  .today-report-card,
-  .table-container {
-    padding: 25px;
-  }
-  .table-container {
-    padding: 20px;
-    width: 100%; /* Remove fit-content */
-    overflow-x: auto;
-  }
-
-   .marketdata-container {
-    margin: 70px 0px 40px 0px;
-  }
-
-  .sub-card-value {
-    font-size: 18px;
-  }
-
-  .action-btn {
-    padding: 18px;
-    font-size: 15px;
-  }
-
-  .chart-cell {
-    padding: 3px 2px;
-  }
-
-  .mini-chart {
-    height: 22px;
-    width: 70%;
-  }
+.action-btn.deposit {
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
 }
 
-/* Tablet (768px to 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
+.action-btn.withdraw {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+}
+
+/* ================================
+   💹 Market Data / Trading Table
+================================= */
+
+.marketdata-container {
+  margin: var(--space-xl) 0;
+}
+
+.table-container {
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  overflow-x: auto;
+}
+
+.table-heading {
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: var(--space-sm);
+}
+
+.trading-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  min-width: 600px;
+}
+
+.trading-table thead {
+  background: var(--color-primary-light);
+  color: #fff;
+}
+
+.trading-table th,
+.trading-table td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.trading-table tbody tr {
+  border-bottom: 1px solid #f1f3f4;
+  transition: background-color 0.2s ease;
+}
+
+.trading-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.coin-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.coin-symbol {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.coin-name {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.price-cell {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.change-cell {
+  font-weight: 600;
+}
+
+.change-cell.positive {
+  color: var(--color-success);
+}
+
+.change-cell.negative {
+  color: var(--color-danger);
+}
+
+.mini-chart {
+  width: 100%;
+  height: 40px;
+  background: #f8f9fa;
+  border-radius: var(--radius-sm);
+  border: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================================
+   📱 Responsive Tweaks
+================================= */
+
+@media (max-width: 768px) {
   .dashboard-container {
-    padding: 20px;
-    margin: 70px auto;
+    padding: var(--space-sm);
   }
 
-  .today-report-card .report-content .row {
-    flex-wrap: wrap;
-  }
-
-  .today-report-card .report-content .col-md-3 {
-    flex: 1 1 calc(50% - 10px);
-  }
-  .table-container {
-    padding: 15px;
-    width: 100%;
-    overflow-x: auto;
-  }
-  .marketdata-container {
-    margin: 70px 0px 40px 0px;
+  .report-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .trading-table {
-    min-width: 600px; /* Ensure table has minimum width */
-  }
-
-  .report-header {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .sub-card {
-    padding: 15px;
-  }
-
-  .sub-card-value {
-    font-size: 16px;
+    min-width: 500px;
   }
 
   .action-btn {
-    padding: 15px;
-    font-size: 14px;
-  }
-
-  .trading-table th,
-  .trading-table td {
-    padding: 12px 15px;
-  }
-
-  .coin-symbol {
-    font-size: 15px;
-  }
-
-  .coin-name {
-    font-size: 11px;
-  }
-
-  .price-cell {
-    font-size: 15px;
-  }
-
-  .change-cell {
-    font-size: 13px;
-  }
-
-  .chart-cell {
-    padding: 10px 12px;
-  }
-
-  .mini-chart {
-    height: 35px;
-    width: 70%;
+    font-size: 0.9rem;
+    padding: var(--space-sm);
   }
 }
 
-/* Mobile Large (576px to 767px) */
-@media (min-width: 576px) and (max-width: 767px) {
-  .dashboard-container {
-    padding: 15px;
-    margin: 60px auto;
-  }
-
-  .today-report-card .report-content .col-md-3 {
-    flex: 1 1 100%;
-  }
-  .table-container {
-    padding: 15px;
-    width: 100%; /* Change from fit-content */
-    overflow-x: auto; /* Add this */
-  }
-
-  .marketdata-container {
-    margin: 70px 0px 40px 0px;
-  }
-
-  .report-header {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-
-  .report-title {
-    font-size: 18px;
-  }
-
-  .report-date {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-
-  .sub-card {
-    padding: 12px;
-    margin-bottom: 10px;
-  }
-
-  .sub-card-value {
-    font-size: 14px;
-  }
-
-  .action-btn {
-    padding: 12px;
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
-
+@media (max-width: 480px) {
   .table-heading {
-    font-size: 18px;
-  }
-
-  .trading-table {
-    font-size: 13px;
-  }
-
-  .trading-table th,
-  .trading-table td {
-    padding: 10px 8px;
+    font-size: 1rem;
   }
 
   .coin-symbol {
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 
   .coin-name {
-    font-size: 10px;
-  }
-
-  .price-cell {
-    font-size: 13px;
-  }
-
-  .change-cell {
-    font-size: 12px;
-  }
-
-  .mini-chart {
-    height: 30px;
-    width: 70%;
-  }
-
-  .chart-cell {
-    padding: 8px 6px;
-  }
-}
-
-/* Mobile Small (up to 575px) */
-@media (max-width: 575px) {
-  .dashboard-container {
-    padding: 10px;
-    margin: 50px auto;
-  }
-
-  .today-report-card,
-  .table-container {
-    padding: 12px;
-    border-radius: 10px;
-  }
-  .table-container {
-    padding: 12px;
-    width: 100%;
-    overflow-x: auto;
-  }
-  .marketdata-container {
-    margin: 70px 0px 40px 0px;
-  }
-
-  .trading-table {
-    min-width: 500px; /* Smaller minimum width for mobile */
-  }
-
-  .report-header {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-
-  .report-title {
-    font-size: 16px;
-  }
-
-  .report-date {
-    font-size: 11px;
-    padding: 5px 10px;
+    font-size: 0.7rem;
   }
 
   .sub-card {
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-  }
-
-  .sub-card-header h6 {
-    font-size: 12px;
-  }
-
-  .sub-card-value {
-    font-size: 13px;
-  }
-
-  .action-btn {
-    padding: 10px;
-    font-size: 12px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-  }
-
-  .table-heading {
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
-
-  .trading-table {
-    font-size: 12px;
-    border-radius: 8px;
-  }
-
-  .trading-table th {
-    padding: 8px 5px;
-    font-size: 11px;
-    letter-spacing: 0.3px;
-  }
-
-  .trading-table td {
-    padding: 8px 5px;
-  }
-
-  .coin-info {
-    gap: 1px;
-  }
-
-  .coin-symbol {
-    font-size: 13px;
-  }
-
-  .coin-name {
-    font-size: 9px;
-  }
-
-  .price-cell {
-    font-size: 12px;
-  }
-
-  .change-cell {
-    font-size: 11px;
-  }
-
-  .change-cell i {
-    font-size: 10px;
-    margin-right: 3px;
-  }
-
-  .mini-chart {
-    height: 25px;
-    width: 70%;
-    border-radius: 4px;
-  }
-
-  .chart-cell {
-    padding: 5px 3px;
-  }
-}
-
-/* Extra Small Mobile (up to 375px) */
-@media (max-width: 375px) {
-  .dashboard-container {
-    padding: 8px;
-    margin: 40px auto;
-  }
-
-  .today-report-card,
-  .table-container {
-    padding: 10px;
-  }
-
-  .marketdata-container {
-    margin: 70px 0px 40px 0px;
-  }
-
-  .table-container {
-    width: 100%; /* Change from fit-content */
-    overflow-x: auto; /* Add this */
-    margin: 10px auto; /* Add responsive margin */
-  }
-
-  .sub-card {
-    padding: 8px;
-  }
-
-  .sub-card-value {
-    font-size: 12px;
-  }
-
-  .action-btn {
-    padding: 8px;
-    font-size: 11px;
-  }
-
-  .trading-table th,
-  .trading-table td {
-    padding: 6px 3px;
-  }
-
-  .coin-symbol {
-    font-size: 12px;
-  }
-
-  .coin-name {
-    font-size: 8px;
-  }
-
-  .price-cell {
-    font-size: 11px;
-  }
-
-  .change-cell {
-    font-size: 10px;
-  }
-
-  .chart-cell {
-    padding: 3px 2px;
-  }
-
-  .mini-chart {
-    height: 22px;
-    width: 70%;
+    padding: var(--space-sm);
   }
 }

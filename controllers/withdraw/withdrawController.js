@@ -1,24 +1,22 @@
 const admin = require('firebase-admin');
 const userModel = require('../../models/userModel');
 
-// Firestore reference
 const db = admin.firestore();
 const WITHDRAWALS_COLLECTION = 'withdrawals';
 
 // Create withdrawal request
 const createWithdrawal = async (req, res) => {
     try {
-        const { amount, walletAddress, userId } = req.body;
+        const userId = req.user.email; // From JWT middleware
+        const { amount, walletAddress } = req.body;
         
-        // Validate input
-        if (!amount || !walletAddress || !userId) {
+        if (!amount || !walletAddress) {
             return res.status(400).json({
                 success: false,
-                error: 'Missing required fields: amount, walletAddress, userId'
+                error: 'Missing required fields: amount, walletAddress'
             });
         }
 
-        // Validate amount
         const numAmount = parseFloat(amount);
         if (isNaN(numAmount) || numAmount <= 0) {
             return res.status(400).json({
@@ -27,13 +25,33 @@ const createWithdrawal = async (req, res) => {
             });
         }
 
-        // Validate wallet address format (basic ERC20 validation)
+        // Validate wallet address
         if (!walletAddress.startsWith('0x') || walletAddress.length !== 42) {
             return res.status(400).json({
                 success: false,
                 error: 'Invalid wallet address format. Must be a valid ERC20 address.'
             });
         }
+
+        // Check user balance
+        const user = await userModel.getUserById(userId);
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                error: 'User not found'
+            });
+        }
+
+        const currentBalance = user.balance || 0;
+        if (currentBalance < numAmount) {
+            return res.status(400).json({
+                success: false,
+                error: `Insufficient balance. Your current balance is $${currentBalance.toFixed(2)}`
+            });
+        }
+
+        // Deduct balance
+        await userModel.updateUserBalance(userId, numAmount, 'subtract');
 
         // Create withdrawal document
         const withdrawalData = {
@@ -47,8 +65,16 @@ const createWithdrawal = async (req, res) => {
             processedAt: null
         };
 
-        // Store in Firestore
         const docRef = await db.collection(WITHDRAWALS_COLLECTION).add(withdrawalData);
+
+        // Record transaction
+        await userModel.recordTransaction(userId, {
+            type: 'withdrawal',
+            amount: numAmount,
+            status: 'pending',
+            description: `Withdrawal to ${walletAddress.substring(0, 10)}...`,
+            walletAddress: walletAddress
+        });
 
         console.log('✅ Withdrawal request created:', docRef.id);
 
@@ -76,16 +102,8 @@ const createWithdrawal = async (req, res) => {
 // Get user's withdrawal history
 const getWithdrawalHistory = async (req, res) => {
     try {
-        const { userId } = req.params;
+        const userId = req.user.email;
 
-        if (!userId) {
-            return res.status(400).json({
-                success: false,
-                error: 'User ID is required'
-            });
-        }
-
-        // Query withdrawals for the user, ordered by creation date (newest first)
         const withdrawalsQuery = await db.collection(WITHDRAWALS_COLLECTION)
             .where('userId', '==', userId)
             .orderBy('createdAt', 'desc')
@@ -142,6 +160,17 @@ const updateWithdrawalStatus = async (req, res) => {
             });
         }
 
+        const withdrawalRef = db.collection(WITHDRAWALS_COLLECTION).doc(withdrawalId);
+        const withdrawal = await withdrawalRef.get();
+
+        if (!withdrawal.exists) {
+            return res.status(404).json({
+                success: false,
+                error: 'Withdrawal not found'
+            });
+        }
+
+        const withdrawalData = withdrawal.data();
         const updateData = {
             status: status,
             updatedAt: admin.firestore.FieldValue.serverTimestamp()
@@ -155,8 +184,12 @@ const updateWithdrawalStatus = async (req, res) => {
             updateData.processedAt = admin.firestore.FieldValue.serverTimestamp();
         }
 
-        // Update the withdrawal document
-        await db.collection(WITHDRAWALS_COLLECTION).doc(withdrawalId).update(updateData);
+        // If withdrawal is cancelled or failed, refund the balance
+        if ((status === 'cancelled' || status === 'failed') && withdrawalData.status === 'pending') {
+            await userModel.updateUserBalance(withdrawalData.userId, withdrawalData.amount, 'add');
+        }
+
+        await withdrawalRef.update(updateData);
 
         console.log('✅ Withdrawal status updated:', withdrawalId, 'to', status);
 
@@ -179,16 +212,8 @@ const updateWithdrawalStatus = async (req, res) => {
 // Get user balance
 const getUserBalance = async (req, res) => {
     try {
-        const { userId } = req.params;
+        const userId = req.user.email;
 
-        if (!userId) {
-            return res.status(400).json({
-                success: false,
-                error: 'User ID is required'
-            });
-        }
-
-        // Get user data from your user model
         const user = await userModel.getUserById(userId);
         
         if (!user) {

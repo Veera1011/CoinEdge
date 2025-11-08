@@ -1,26 +1,29 @@
 /* ===========================================
-   DEPOSIT PAGE STYLES
+   MODERN DEPOSIT PAGE CSS
    =========================================== */
 
 .deposit-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    padding: 1rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    padding: 1.5rem;
     width: 100%;
     margin-top: 90px;
 }
 
 .deposit-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     width: 100%;
 }
 
 .deposit-title {
     display: flex;
     justify-content: center;
-    font-size: 2rem;
-    font-weight: 800;
-    color: #000;
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0;
 }
 
@@ -28,66 +31,74 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
-/* Selected Crypto Section */
+/* Selected Crypto Section - Glassmorphism */
 .selected-crypto-section {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 2rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     width: 100%;
+    transition: all 0.3s ease;
+}
+
+.selected-crypto-section:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
 .selected-crypto-card {
-    background: #f8fafc;
-    border-radius: 12px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: 2px solid #3b82f6;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid #667eea;
     cursor: pointer;
-    transition: all 0.3s ease;
-    min-height: 60px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 70px;
     display: flex;
     align-items: center;
     width: 100%;
 }
 
 .selected-crypto-card:hover {
-    background: #eff6ff;
-    border-color: #2563eb;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
 }
 
 .crypto-info {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     position: relative;
     width: 100%;
 }
 
 .crypto-logo {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     object-fit: contain;
-    border: 2px solid #3b82f6;
+    border: 3px solid #667eea;
+    background: white;
+    padding: 4px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 
 .crypto-symbol {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #1e293b;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a1a2e;
     flex: 1;
 }
 
 .dropdown-arrow {
-    color: #3b82f6;
-    font-size: 1rem;
+    color: #667eea;
+    font-size: 1.25rem;
     transition: transform 0.3s ease;
     margin-left: auto;
 }
@@ -96,14 +107,15 @@
     transform: rotate(180deg);
 }
 
-/* Dropdown List */
+/* Dropdown List - Modern Design */
 .crypto-dropdown {
-    background: #ffffff;
-    border-radius: 8px;
-    border: 2px solid #3b82f6;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
-    margin-top: 0.5rem;
-    max-height: 250px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    border: 2px solid #667eea;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    margin-top: 0.75rem;
+    max-height: 300px;
     overflow-y: auto;
     width: 100%;
 }
@@ -116,11 +128,11 @@
 .crypto-option {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .crypto-option:last-child {
@@ -128,31 +140,34 @@
 }
 
 .crypto-option:hover {
-    background: #f8fafc;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
 }
 
 .crypto-option.selected {
-    background: #eff6ff;
-    border-left: 3px solid #3b82f6;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    border-left: 4px solid #667eea;
 }
 
 .crypto-option-logo {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: contain;
+    border: 2px solid #667eea;
+    background: white;
+    padding: 3px;
 }
 
 .crypto-option-symbol {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a2e;
 }
 
 .exchange-rate-info {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
     width: 100%;
 }
 
@@ -160,61 +175,55 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem;
-    background: #f8fafc;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    border-radius: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.1);
     width: 100%;
+    transition: all 0.3s ease;
+}
+
+.exchange-rate-row:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
 }
 
 .exchange-rate-label {
-    font-size: 1rem;
-    color: #64748b;
+    font-size: 1.1rem;
+    color: #4a5568;
     font-weight: 600;
 }
 
 .exchange-rate-value {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #3b82f6;
-}
-
-.support-link {
-    margin-top: 0.25rem;
-}
-
-.support-text {
-    font-size: 0.9rem;
-    color: #64748b;
-    text-decoration: none;
-}
-
-.click-here {
-    color: #3b82f6;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.click-here:hover {
-    text-decoration: underline;
+    font-size: 1.25rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Deposit Details Section */
 .deposit-details-section {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 120px;
+    transition: all 0.3s ease;
+}
+
+.deposit-details-section:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
 .deposit-details-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     width: 100%;
 }
 
@@ -222,46 +231,46 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 200px;
-    background: #f8fafc;
-    border-radius: 12px;
-    border: 2px solid #3b82f6;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+    width: 240px;
+    height: 240px;
+    background: white;
+    border-radius: 20px;
+    border: 3px solid #667eea;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+    padding: 15px;
 }
 
 .qr-code {
-    width: 180px;
-    height: 180px;
-    background: #000000;
-    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
-    font-size: 0.8rem;
-    text-align: center;
-    position: relative;
 }
 
-
+.qr-code img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
 .deposit-address-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
     width: 100%;
 }
 
 .deposit-address {
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    color: #1e293b;
-    background: #f8fafc;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    border: 2px solid #3b82f6;
+    font-size: 1rem;
+    color: #1a1a2e;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    border: 2px solid #667eea;
     word-break: break-all;
     text-align: center;
     width: 100%;
@@ -269,22 +278,21 @@
 }
 
 .copy-btn {
-    background: #3b82f6;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #ffffff;
     border: none;
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
+    padding: 1rem 3rem;
+    border-radius: 50px;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.1rem;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
 }
 
 .copy-btn:hover {
-    background: #2563eb;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
 }
 
 .copy-btn:active {
@@ -293,136 +301,20 @@
 
 .deposit-note {
     text-align: center;
-    color: #64748b;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    background: #f8fafc;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.7;
+    background: rgba(102, 126, 234, 0.05);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.1);
     width: 100%;
 }
 
 .crypto-highlight {
-    color: #3b82f6;
-    font-weight: 700;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .deposit-container {
-        padding: 0.75rem;
-    }
-    
-    .deposit-title {
-        font-size: 1.75rem;
-    }
-    
-    .deposit-content {
-        gap: 1rem;
-    }
-    
-    .selected-crypto-section,
-    .deposit-details-section {
-        padding: 1rem;
-    }
-    
-    .selected-crypto-card {
-        padding: 0.75rem;
-        min-height: 50px;
-    }
-    
-    .crypto-logo {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .crypto-symbol {
-        font-size: 1.1rem;
-    }
-    
-    .qr-code-container {
-        width: 160px;
-        height: 160px;
-    }
-    
-    .qr-code {
-        width: 140px;
-        height: 140px;
-        font-size: 0.7rem;
-    }
-    
-    .deposit-address {
-        font-size: 0.8rem;
-        padding: 0.6rem 0.8rem;
-    }
-    
-    .copy-btn {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .deposit-container {
-        padding: 0.5rem;
-    }
-    
-    .deposit-title {
-        font-size: 1.5rem;
-    }
-    
-    .selected-crypto-section,
-    .deposit-details-section {
-        padding: 0.75rem;
-    }
-    
-    .crypto-info {
-        gap: 0.5rem;
-    }
-    
-    .crypto-logo {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .crypto-symbol {
-        font-size: 1rem;
-    }
-    
-    .exchange-rate-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
-    }
-    
-    .exchange-rate-value {
-        font-size: 1rem;
-    }
-    
-    .qr-code-container {
-        width: 140px;
-        height: 140px;
-    }
-    
-    .qr-code {
-        width: 120px;
-        height: 120px;
-        font-size: 0.6rem;
-    }
-    
-    .deposit-address {
-        font-size: 0.75rem;
-        padding: 0.5rem 0.6rem;
-    }
-    
-    .copy-btn {
-        padding: 0.5rem 1.25rem;
-        font-size: 0.85rem;
-    }
-    
-    .deposit-note {
-        font-size: 0.8rem;
-        padding: 0.75rem;
-    }
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
 }

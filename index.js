@@ -30,9 +30,9 @@ app.get('/health', (req, res) => {
 });
 
 // 404 handler
-app.use((req, res) => {
-  res.status(404).render('404', { title: 'Page Not Found' });
-});
+// app.use((req, res) => {
+//   res.status(404).render('404', { title: 'Page Not Found' });
+// });
 
 // Error handler
 app.use((err, req, res, next) => {
